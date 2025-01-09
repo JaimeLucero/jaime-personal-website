@@ -1,5 +1,6 @@
 import { StaticImport } from "next/dist/shared/lib/get-img-props"
 import Image from "next/image"
+import '../src/styles/globals.css'
 
 export default function ProjectCard(props: {
     description: string
@@ -9,6 +10,7 @@ export default function ProjectCard(props: {
 
     return(
         <div
+        className="hover-effect"
         style={{
             display: 'flex',
             flexDirection: 'column',

@@ -21,6 +21,7 @@ export default function Page() {
     "github.svg"
   ]
 
+
   return (
     <div
     style={{
@@ -39,7 +40,6 @@ export default function Page() {
           borderBottomRightRadius: '30%',
           justifyItems: "center",
           position: 'relative', 
-          zIndex: '-2'
         }}>
           <div
           style={{
@@ -94,7 +94,6 @@ export default function Page() {
               alignItems: 'center',
               width: '30vh',
               height: '30vh',
-              zIndex: '-1'
             }}>
               <Image src="pfp.svg"
               alt = "profile"
@@ -134,17 +133,16 @@ export default function Page() {
           }}>
             {skillsIcon.map((path, index) => (
               <div 
+              className="hover-effect"
               key={index}
               style={{
                 display: 'flex',
                 position: 'relative',
                 width: '100px',
                 height: '100px',
-                zIndex: '-1'
+
               }}>
-                <Image src={path} alt={`icon-${index}`}
-                layout= "fill"
-                />
+                  <Image src={path} alt={`icon-${index}`} layout= "fill"/>
               </div>
             ))}
           </div>
@@ -225,13 +223,13 @@ export default function Page() {
             }}>
               {contactIcon.map((path, index) => (
                 <div 
+                className="hover-effect"
                 key={index}
                 style={{
                   display: 'flex',
                   position: 'relative',
                   width: '100px',
                   height: '100px',
-                  zIndex: '-1'
                 }}>
                   <Image src={path} alt={`icon-${index}`}
                   layout= "fill"

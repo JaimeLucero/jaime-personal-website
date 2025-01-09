@@ -55,7 +55,8 @@ export default function Header() {
         position: 'fixed',
         background: '#1E1E1E',
         width: '100%',
-        justifyContent: 'space-between'
+        justifyContent: 'space-between',
+        zIndex: '10'
       }}>
         <div
         style={{
