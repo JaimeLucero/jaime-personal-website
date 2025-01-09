@@ -16,7 +16,6 @@ export default function Header() {
       // Update active section on scroll or when hash changes
     const handleScroll = useCallback(() => {
         const sections = navItems.map((item) => document.getElementById(item.id));
-        const scrollPosition = window.scrollY;
 
         // Check which section is in view
         sections.forEach((section) => {

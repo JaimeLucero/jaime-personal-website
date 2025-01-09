@@ -9,7 +9,17 @@ export default function Footer() {
         { id: 'projects', label: 'Projects' },
         { id: 'talk', label: "Let's Talk!" }
     ], []); // Empty dependency array means navItems will only be created once
-    
+
+    const handleClick = (id: string) => {
+        const section = document.getElementById(id);
+        if (section) {
+          // Scroll to the section smoothly
+          section.scrollIntoView({
+            behavior: 'smooth',
+            block: 'start', // Align to the start of the section
+          });
+        }
+      };
     return (
         <div
         style={{
@@ -84,7 +94,10 @@ export default function Footer() {
                                 >
                                     <a 
                                     href={`#${item.id}`} 
-
+                                    onClick={(e) => {
+                                        e.preventDefault(); // Prevent default link behavior
+                                        handleClick(item.id); // Handle the click
+                                      }}
                                     style={{ 
                                         color: '#1E1E1E',
                                         padding: '20px' 
