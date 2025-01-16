@@ -3,25 +3,8 @@ import Header from "../../components/header"
 import Image from "next/image"
 import ProjectCard from "../../components/project-card"
 import Footer from "../../components/footer"
-import { useEffect, useMemo, useState } from "react"
-
-const useIsMobile = () => {
-  const [isMobile, setIsMobile] = useState<boolean | undefined>(undefined);
-
-  useEffect(() => {
-    const handleResize = () => {
-      if (typeof window !== "undefined") {
-        setIsMobile(window.innerWidth <= 1080);
-      }
-    };
-    
-    handleResize(); // Set initial state
-    window.addEventListener('resize', handleResize);
-    return () => window.removeEventListener('resize', handleResize);
-  }, []);
-
-  return isMobile;
-};
+import { useMemo } from "react"
+import { useWindowSize } from '../hooks/windowContextProvider';
 
 export default function Page() {
   const skillsIcon = useMemo(() => [
@@ -49,6 +32,8 @@ export default function Page() {
     "https://github.com/JaimeLucero"
   ], []); 
 
+  const isMobile = useWindowSize(); 
+  
   const handleIconClick = (index: number) => {
     if (index === 0) {
       navigator.clipboard.writeText(contactLink[index]);
@@ -57,11 +42,6 @@ export default function Page() {
       window.open(contactLink[index], '_blank');
     }
   };
-
-  const isMobile = useIsMobile();
-
-
-  if (isMobile === undefined) return null;
 
 
   return (

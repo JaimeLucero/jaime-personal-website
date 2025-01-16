@@ -1,28 +1,12 @@
 'use client';
 import '../src/styles/globals.css'
 import { useEffect, useState, useCallback, useMemo } from 'react';
-
-const useIsMobile = () => {
-  const [isMobile, setIsMobile] = useState<boolean | undefined>(undefined);
-
-  useEffect(() => {
-    const handleResize = () => {
-      if (typeof window !== "undefined") {
-        setIsMobile(window.innerWidth <= 767);
-      }
-    };
-    
-    handleResize(); // Set initial state
-    window.addEventListener('resize', handleResize);
-    return () => window.removeEventListener('resize', handleResize);
-  }, []);
-
-  return isMobile;
-};
+import { useWindowSize } from '../src/hooks/windowContextProvider';
 
 export default function Header() {
     const [activeSection, setActiveSection] = useState<string>('home'); // Track active section
     const [isMenuOpen, setIsMenuOpen] = useState<boolean>(false); // Track menu visibility
+    const isMobile = useWindowSize(); 
 
     const navItems = useMemo(() => [
         { id: 'home', label: 'Home' },
@@ -64,12 +48,6 @@ export default function Header() {
         }
         setIsMenuOpen(false); // Close menu after clicking
       };
-
-    const isMobile = useIsMobile();
-
-
-    if (isMobile === undefined) return null;
-
 
     return (
       <div
