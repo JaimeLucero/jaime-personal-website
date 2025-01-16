@@ -5,8 +5,14 @@ import '../src/styles/globals.css'
 export default function ProjectCard(props: {
     description: string
     title: string
+    link: string
     thumbnail: string | StaticImport 
 }) {
+
+    const handleClick = () => {
+        window.open(props.link, '_blank');
+    };
+
 
     return(
         <div
@@ -19,7 +25,11 @@ export default function ProjectCard(props: {
             outline: '2px solid #1E1E1E',
             borderRadius: '10px',
             alignItems: 'center',
-        }}>
+            cursor: 'pointer'
+        }}             
+        onClick={handleClick} // Add click listener
+        >
+
             <div
             style={{
             position: 'relative',

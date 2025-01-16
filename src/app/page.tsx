@@ -23,6 +23,24 @@ export default function Page() {
     "github.svg"
   ]
 
+  const contactLink = [
+    "jaimeemanuellucero@gmail.com",
+    "https://www.instagram.com/je_smuty/",
+    "https://www.linkedin.com/in/jaime-emanuel-lucero-6b5689249/",
+    "https://www.upwork.com/freelancers/~0161bbada9c01d4e37?mp_source=share",
+    "https://github.com/JaimeLucero"
+  ]
+
+  const handleIconClick = (index: number) => {
+    if (index === 0) {
+      navigator.clipboard.writeText(contactLink[index]);
+      alert("Email address copied to clipboard!");
+    } else {
+      window.open(contactLink[index], '_blank');
+    }
+  };
+
+
 
   return (
     <div
@@ -184,8 +202,8 @@ export default function Page() {
             alignItems: 'center',
             gap: '20vw'
           }}>
-            <ProjectCard title="DSC USeP-Obrero Website" description="Landing page for DSC USeP-Obrero Chapeter, formerly GDSC USeP-Obrero." thumbnail="dsc-website.svg" />
-            <ProjectCard title="RiceLense" description="A streamlit application for classifying rice grains using images." thumbnail="ricelense.svg"/>
+            <ProjectCard title="DSC USeP-Obrero Website" description="Landing page for DSC USeP-Obrero Chapeter, formerly GDSC USeP-Obrero." thumbnail="dsc-website.svg" link="https://www.gdscusep.com/" />
+            <ProjectCard title="RiceLense" description="A streamlit application for classifying rice grains using images." thumbnail="ricelense.svg" link="https://rice-variety-recognition-usrg8d4nuruupl7pbdrmpz.streamlit.app/"/>
           </div>
         </div>
       </section>
@@ -244,7 +262,10 @@ export default function Page() {
                   position: 'relative',
                   width: window.innerWidth <= 1080 ? '70px' : '100px',
                   height: window.innerWidth <= 1080 ? '70px' : '100px',
-                }}>
+                  cursor: 'pointer'
+                }}
+                onClick={() => handleIconClick(index)} // Add click listener
+                >
                   <Image src={path} alt={`icon-${index}`}
                   layout= "fill"
                   />
