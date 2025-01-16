@@ -8,6 +8,8 @@
   --foreground: #171717;
 }
 
+
+
 @media (prefers-color-scheme: dark) {
   :root {
     --background: #F7F7F7;
@@ -27,4 +29,11 @@ body {
 
 .hover-effect:hover {
   transform: scale(1.2); /* Scale up the icon */
+}
+
+@media (max-width: 768px) {
+
+  .hamburger-btn {
+    display: block;
+  }
 }

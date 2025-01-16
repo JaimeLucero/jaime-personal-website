@@ -5,6 +5,7 @@ import { useEffect, useState, useCallback, useMemo } from 'react';
 
 export default function Header() {
     const [activeSection, setActiveSection] = useState<string>('home'); // Track active section
+    const [isMenuOpen, setIsMenuOpen] = useState<boolean>(false); // Track menu visibility
 
     const navItems = useMemo(() => [
         { id: 'home', label: 'Home' },
@@ -39,13 +40,14 @@ export default function Header() {
     const handleClick = (id: string) => {
         const section = document.getElementById(id);
         if (section) {
-          // Scroll to the section smoothly
           section.scrollIntoView({
             behavior: 'smooth',
-            block: 'start', // Align to the start of the section
+            block: 'start',
           });
         }
+        setIsMenuOpen(false); // Close menu after clicking
       };
+    
 
     return (
       <div
@@ -54,7 +56,7 @@ export default function Header() {
         height: '100px',
         position: 'fixed',
         background: '#1E1E1E',
-        width: '100%',
+        width: '100vw',
         justifyContent: 'space-between',
         zIndex: '10'
       }}>
@@ -63,12 +65,12 @@ export default function Header() {
             display: 'flex',
             alignContent: 'center',
             alignItems: 'center',
-            paddingLeft: '60px'
+            paddingLeft: '5vw'
         }}>
             <h1
             style={{
                 font: 'Poppins',
-                fontSize: '36px',
+                fontSize: '2rem',
                 fontWeight: '900',
                 color: 'white'
             }}>
@@ -80,13 +82,36 @@ export default function Header() {
             display: 'flex',
             alignContent: 'center',
             alignItems: 'center',
-            paddingRight: '60px',
+            paddingRight: '8vw',
             height: '100%'
         }}>
+            <button
+            style={{
+                display: window.innerWidth >= 767 ? 'none' : 'flex', // Toggle menu on mobile
+                background: 'none',
+                border: 'none',
+                color: 'white',
+                fontSize: '40px',
+                cursor: 'pointer',
+            }}
+            className="hamburger-btn"
+            onClick={() => setIsMenuOpen(!isMenuOpen)}
+            >
+            ☰
+            </button>
+
             <ul
             style={{
                 listStyleType: 'none',
-                display: 'flex',
+                display: window.innerWidth <= 767 && !isMenuOpen ? 'none' : 'flex', // Toggle menu on mobile
+                flexDirection: window.innerWidth <= 767 ? 'column' : 'row',
+                position: window.innerWidth <= 767 ? 'fixed' : 'static', // Position the menu
+                top: '100px', // Below the header
+                right: '160px',
+                width: window.innerWidth <= 767 ? '30%' : 'auto', // Full width on mobile
+                height: '100%',
+                background: '#1E1E1E',
+                padding: '10px',
             }}>
                 {navItems.map((item) => (
                     <li key={item.id} style={{}}>

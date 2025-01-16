@@ -1,7 +1,9 @@
+'use client'
 import Header from "../../components/header"
 import Image from "next/image"
 import ProjectCard from "../../components/project-card"
 import Footer from "../../components/footer"
+
 
 export default function Page() {
   const skillsIcon = [
@@ -35,20 +37,23 @@ export default function Page() {
         style={{
           paddingTop: '100px',
           background: '#1E1E1E',
-          height: '100vh',
+          minHeight: '80vh',
+          width: '100%',
           borderBottomLeftRadius: '30%',
           borderBottomRightRadius: '30%',
           justifyItems: "center",
           position: 'relative', 
         }}>
           <div
+          className="responsive-container"
           style={{
             paddingTop: '10vh',
             display: 'flex',
-            flexDirection: 'row',
+            flexDirection: window.innerWidth <= 1080 ? 'column-reverse' : 'row',
             justifyContent: 'space-between',
-            alignItems: 'center',
-            width: '70%'
+            alignItems: window.innerWidth <= 1080 ? 'center' : 'flex-start',
+            width: '70%',
+            margin: '0 auto' // Center the container
           }}>
             <div
             style={{
@@ -60,7 +65,7 @@ export default function Page() {
               <h1
               style={{
                 font: 'Poppins',
-                fontSize: '36px',
+                fontSize: '2rem',
                 color: 'white',
                 fontWeight: '900'
               }}
@@ -70,7 +75,7 @@ export default function Page() {
               <h1
               style={{
                 font: 'Poppins',
-                fontSize: '40px',
+                fontSize: '2.5rem',
                 color: '#38502C',
                 fontWeight: '900'
               }}>
@@ -80,7 +85,7 @@ export default function Page() {
               style={{
                 textAlign: 'center',
                 font: 'Poppins',
-                fontSize: '24px',
+                fontSize: '1.5rem',
                 fontWeight: 'normal'
               }}>
                 I am a software developer and currently studying Computer Science and Data Science at University of Southeastern Philippines.
@@ -118,7 +123,7 @@ export default function Page() {
           <h1
           style={{
             font: 'Poppins',
-            fontSize: '36px',
+            fontSize: '2rem',
             color: '#1E1E1E',
             fontWeight: '900'
           }}
@@ -162,7 +167,7 @@ export default function Page() {
           <h1
           style={{
             font: 'Poppins',
-            fontSize: '36px',
+            fontSize: '2rem',
             color: '#1E1E1E',
             fontWeight: '900'
           }}>
@@ -194,7 +199,7 @@ export default function Page() {
           <h1
           style={{
             font: 'Poppins',
-            fontSize: '36px',
+            fontSize: '2rem',
             color: '#1E1E1E',
             fontWeight: '900'
           }}>
@@ -209,7 +214,7 @@ export default function Page() {
           <h1
             style={{
               font: 'Poppins',
-              fontSize: '24px',
+              fontSize: '1.5rem',
               color: '#1E1E1E',
               fontWeight: 'normal'
             }}>

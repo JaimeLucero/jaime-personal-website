@@ -18,7 +18,7 @@ export default function ProjectCard(props: {
             height: '400px',
             outline: '2px solid #1E1E1E',
             borderRadius: '10px',
-            alignItems: 'center'
+            alignItems: 'center',
         }}>
             <div
             style={{
