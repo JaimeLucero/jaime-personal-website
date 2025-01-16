@@ -3,33 +3,33 @@ import Header from "../../components/header"
 import Image from "next/image"
 import ProjectCard from "../../components/project-card"
 import Footer from "../../components/footer"
-
+import { useEffect, useMemo, useState } from "react"
 
 export default function Page() {
-  const skillsIcon = [
+  const skillsIcon = useMemo(() => [
     "git.svg",
     "figma.svg",
     "next.svg",
     "python.svg",
     "java.svg",
     "typescript.svg"
-  ]
+  ], []); 
 
-  const contactIcon = [
+  const contactIcon = useMemo(() => [
     "mail.svg",
     "instagram.svg",
     "linkedin.svg",
     "upwork.svg",
     "github.svg"
-  ]
+  ], []); 
 
-  const contactLink = [
+  const contactLink = useMemo(() => [
     "jaimeemanuellucero@gmail.com",
     "https://www.instagram.com/je_smuty/",
     "https://www.linkedin.com/in/jaime-emanuel-lucero-6b5689249/",
     "https://www.upwork.com/freelancers/~0161bbada9c01d4e37?mp_source=share",
     "https://github.com/JaimeLucero"
-  ]
+  ], []); 
 
   const handleIconClick = (index: number) => {
     if (index === 0) {
@@ -40,7 +40,20 @@ export default function Page() {
     }
   };
 
+  const [isMobile, setIsMobile] = useState<boolean | undefined>(undefined);
 
+  useEffect(() => {
+    const handleResize = () => {
+      setIsMobile(window.innerWidth <= 1080);
+    };
+  
+    handleResize(); // Set initial state
+    window.addEventListener('resize', handleResize);
+    return () => window.removeEventListener('resize', handleResize);
+  }, []);
+  
+  if (isMobile === undefined) return null;
+  
 
   return (
     <div
@@ -67,9 +80,9 @@ export default function Page() {
           style={{
             paddingTop: '10vh',
             display: 'flex',
-            flexDirection: window.innerWidth <= 1080 ? 'column-reverse' : 'row',
+            flexDirection: isMobile ? 'column-reverse' : 'row',
             justifyContent: 'space-between',
-            alignItems: window.innerWidth <= 1080 ? 'center' : 'flex-start',
+            alignItems: isMobile ? 'center' : 'flex-start',
             width: '70%',
             margin: '0 auto' // Center the container
           }}>
@@ -78,12 +91,12 @@ export default function Page() {
               display: 'flex',
               flexDirection: 'column',
               alignItems: 'center',
-              width: window.innerWidth <= 1080 ? '100%' : '30vw'
+              width: isMobile ? '100%' : '30vw'
             }}>
               <h1
               style={{
                 font: 'Poppins',
-                fontSize: window.innerWidth <= 1080 ? '1.5rem' : '2rem',
+                fontSize: isMobile ? '1.5rem' : '2rem',
                 color: 'white',
                 fontWeight: '900'
               }}
@@ -93,7 +106,7 @@ export default function Page() {
               <h1
               style={{
                 font: 'Poppins',
-                fontSize: window.innerWidth <= 1080 ? '2rem' : '2.5rem',
+                fontSize: isMobile ? '2rem' : '2.5rem',
                 color: '#38502C',
                 fontWeight: '900'
               }}>
@@ -103,7 +116,7 @@ export default function Page() {
               style={{
                 textAlign: 'center',
                 font: 'Poppins',
-                fontSize: window.innerWidth <= 1080 ? '1.2rem' : '1.5rem',
+                fontSize: isMobile ? '1.2rem' : '1.5rem',
                 fontWeight: 'normal'
               }}>
                 I am a software developer and currently studying Computer Science and Data Science at University of Southeastern Philippines.
@@ -164,8 +177,8 @@ export default function Page() {
               style={{
                 display: 'flex',
                 position: 'relative',
-                width: window.innerWidth <= 1080 ? '70px' : '100px',
-                height: window.innerWidth <= 1080 ? '70px' : '100px',
+                width: isMobile ? '70px' : '100px',
+                height: isMobile ? '70px' : '100px',
               }}>
                   <Image src={path} alt={`icon-${index}`} layout= "fill"/>
               </div>
@@ -196,7 +209,7 @@ export default function Page() {
           <div
           style={{
             display: 'flex',
-            flexDirection: window.innerWidth <= 1080 ? 'column' : 'row',
+            flexDirection: isMobile ? 'column' : 'row',
             width: '100%',
             justifyContent: 'center',
             alignItems: 'center',
@@ -260,8 +273,8 @@ export default function Page() {
                 style={{
                   display: 'flex',
                   position: 'relative',
-                  width: window.innerWidth <= 1080 ? '70px' : '100px',
-                  height: window.innerWidth <= 1080 ? '70px' : '100px',
+                  width: isMobile ? '70px' : '100px',
+                  height: isMobile ? '70px' : '100px',
                   cursor: 'pointer'
                 }}
                 onClick={() => handleIconClick(index)} // Add click listener

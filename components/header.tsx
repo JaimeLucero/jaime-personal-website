@@ -47,6 +47,27 @@ export default function Header() {
         }
         setIsMenuOpen(false); // Close menu after clicking
       };
+
+    const [isMobile, setIsMobile] = useState<boolean | undefined>(undefined);
+
+    // Function to handle screen size changes
+    const handleResize = () => {
+        setIsMobile(window.innerWidth <= 767);
+    };
+
+    useEffect(() => {
+        // Set initial screen size
+        handleResize();
+
+        // Add event listener for window resize
+        window.addEventListener('resize', handleResize);
+
+        // Clean up the event listener on unmount
+        return () => window.removeEventListener('resize', handleResize);
+    }, []);
+
+    if (isMobile === undefined) return null;
+
     
 
     return (
@@ -80,14 +101,12 @@ export default function Header() {
         <div
         style={{
             display: 'flex',
-            alignContent: 'center',
-            alignItems: 'center',
             paddingRight: '5vw',
             height: '100%'
         }}>
             <button
             style={{
-                display: window.innerWidth >= 767 ? 'none' : 'flex', // Toggle menu on mobile
+                display: isMobile ? 'flex' : 'none', // Toggle menu on mobile
                 background: 'none',
                 border: 'none',
                 color: 'white',
@@ -103,12 +122,12 @@ export default function Header() {
             <ul
             style={{
                 listStyleType: 'none',
-                display: window.innerWidth <= 767 && !isMenuOpen ? 'none' : 'flex', // Toggle menu on mobile
-                flexDirection: window.innerWidth <= 767 ? 'column' : 'row',
-                position: window.innerWidth <= 767 ? 'fixed' : 'static', // Position the menu
+                display: isMobile && !isMenuOpen ? 'none' : 'flex', // Toggle menu on mobile
+                flexDirection: isMobile ? 'column' : 'row',
+                position: isMobile ? 'fixed' : 'static', // Position the menu
                 top: '100px', // Below the header
-                right: '160px',
-                width: window.innerWidth <= 767 ? '30%' : 'auto', // Full width on mobile
+                right: '0px',
+                width: isMobile ? '30%' : 'auto', // Full width on mobile
                 height: '100%',
                 background: '#1E1E1E',
                 padding: '10px',
