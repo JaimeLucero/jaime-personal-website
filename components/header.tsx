@@ -2,6 +2,23 @@
 import '../src/styles/globals.css'
 import { useEffect, useState, useCallback, useMemo } from 'react';
 
+const useIsMobile = () => {
+  const [isMobile, setIsMobile] = useState<boolean | undefined>(undefined);
+
+  useEffect(() => {
+    const handleResize = () => {
+      if (typeof window !== "undefined") {
+        setIsMobile(window.innerWidth <= 767);
+      }
+    };
+    
+    handleResize(); // Set initial state
+    window.addEventListener('resize', handleResize);
+    return () => window.removeEventListener('resize', handleResize);
+  }, []);
+
+  return isMobile;
+};
 
 export default function Header() {
     const [activeSection, setActiveSection] = useState<string>('home'); // Track active section
@@ -48,27 +65,11 @@ export default function Header() {
         setIsMenuOpen(false); // Close menu after clicking
       };
 
-    const [isMobile, setIsMobile] = useState<boolean | undefined>(undefined);
+    const isMobile = useIsMobile();
 
-    // Function to handle screen size changes
-    const handleResize = () => {
-        setIsMobile(window.innerWidth <= 767);
-    };
-
-    useEffect(() => {
-        // Set initial screen size
-        handleResize();
-
-        // Add event listener for window resize
-        window.addEventListener('resize', handleResize);
-
-        // Clean up the event listener on unmount
-        return () => window.removeEventListener('resize', handleResize);
-    }, []);
 
     if (isMobile === undefined) return null;
 
-    
 
     return (
       <div

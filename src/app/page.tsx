@@ -5,6 +5,24 @@ import ProjectCard from "../../components/project-card"
 import Footer from "../../components/footer"
 import { useEffect, useMemo, useState } from "react"
 
+const useIsMobile = () => {
+  const [isMobile, setIsMobile] = useState<boolean | undefined>(undefined);
+
+  useEffect(() => {
+    const handleResize = () => {
+      if (typeof window !== "undefined") {
+        setIsMobile(window.innerWidth <= 1080);
+      }
+    };
+    
+    handleResize(); // Set initial state
+    window.addEventListener('resize', handleResize);
+    return () => window.removeEventListener('resize', handleResize);
+  }, []);
+
+  return isMobile;
+};
+
 export default function Page() {
   const skillsIcon = useMemo(() => [
     "git.svg",
@@ -40,20 +58,11 @@ export default function Page() {
     }
   };
 
-  const [isMobile, setIsMobile] = useState<boolean | undefined>(undefined);
+  const isMobile = useIsMobile();
 
-  useEffect(() => {
-    const handleResize = () => {
-      setIsMobile(window.innerWidth <= 1080);
-    };
-  
-    handleResize(); // Set initial state
-    window.addEventListener('resize', handleResize);
-    return () => window.removeEventListener('resize', handleResize);
-  }, []);
-  
+
   if (isMobile === undefined) return null;
-  
+
 
   return (
     <div
