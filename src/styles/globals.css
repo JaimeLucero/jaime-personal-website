@@ -21,6 +21,7 @@ body {
   color: var(--foreground);
   background: var(--background);
   font-family: 'Poppins';
+  overflow-x: hidden; /* Prevent horizontal overflow */
 }
 
 .hover-effect {

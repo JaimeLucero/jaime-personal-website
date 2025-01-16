@@ -82,7 +82,7 @@ export default function Header() {
             display: 'flex',
             alignContent: 'center',
             alignItems: 'center',
-            paddingRight: '8vw',
+            paddingRight: '5vw',
             height: '100%'
         }}>
             <button

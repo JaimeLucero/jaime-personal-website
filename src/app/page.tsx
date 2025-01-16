@@ -60,12 +60,12 @@ export default function Page() {
               display: 'flex',
               flexDirection: 'column',
               alignItems: 'center',
-              width: '30vw'
+              width: window.innerWidth <= 1080 ? '100%' : '30vw'
             }}>
               <h1
               style={{
                 font: 'Poppins',
-                fontSize: '2rem',
+                fontSize: window.innerWidth <= 1080 ? '1.5rem' : '2rem',
                 color: 'white',
                 fontWeight: '900'
               }}
@@ -75,7 +75,7 @@ export default function Page() {
               <h1
               style={{
                 font: 'Poppins',
-                fontSize: '2.5rem',
+                fontSize: window.innerWidth <= 1080 ? '2rem' : '2.5rem',
                 color: '#38502C',
                 fontWeight: '900'
               }}>
@@ -85,7 +85,7 @@ export default function Page() {
               style={{
                 textAlign: 'center',
                 font: 'Poppins',
-                fontSize: '1.5rem',
+                fontSize: window.innerWidth <= 1080 ? '1.2rem' : '1.5rem',
                 fontWeight: 'normal'
               }}>
                 I am a software developer and currently studying Computer Science and Data Science at University of Southeastern Philippines.
@@ -134,7 +134,10 @@ export default function Page() {
           style={{
             display: 'flex',
             flexDirection: 'row',
-            gap: '5vw'
+            flexWrap: 'wrap',
+            gap: '5vw',
+            justifyContent: 'center', // Center horizontally
+            alignItems: 'center' // Center vertically
           }}>
             {skillsIcon.map((path, index) => (
               <div 
@@ -143,9 +146,8 @@ export default function Page() {
               style={{
                 display: 'flex',
                 position: 'relative',
-                width: '100px',
-                height: '100px',
-
+                width: window.innerWidth <= 1080 ? '70px' : '100px',
+                height: window.innerWidth <= 1080 ? '70px' : '100px',
               }}>
                   <Image src={path} alt={`icon-${index}`} layout= "fill"/>
               </div>
@@ -176,8 +178,10 @@ export default function Page() {
           <div
           style={{
             display: 'flex',
+            flexDirection: window.innerWidth <= 1080 ? 'column' : 'row',
             width: '100%',
             justifyContent: 'center',
+            alignItems: 'center',
             gap: '20vw'
           }}>
             <ProjectCard title="DSC USeP-Obrero Website" description="Landing page for DSC USeP-Obrero Chapeter, formerly GDSC USeP-Obrero." thumbnail="dsc-website.svg" />
@@ -209,14 +213,16 @@ export default function Page() {
           style={{
             display: 'flex',
             flexDirection: 'column',
-            alignItems: 'center'
+            alignItems: 'center',
+            justifyContent: 'center', // Center horizontally
           }}>
           <h1
             style={{
               font: 'Poppins',
               fontSize: '1.5rem',
               color: '#1E1E1E',
-              fontWeight: 'normal'
+              fontWeight: 'normal',
+              textAlign: 'center'
             }}>
               Connect with me through these platforms:
             </h1>
@@ -224,7 +230,10 @@ export default function Page() {
             style={{
               display: 'flex',
               flexDirection: 'row',
-              gap: '5vw'
+              flexWrap: 'wrap',
+              gap: '5vw',
+              justifyContent: 'center', // Center horizontally
+              alignItems: 'center' // Center vertically
             }}>
               {contactIcon.map((path, index) => (
                 <div 
@@ -233,8 +242,8 @@ export default function Page() {
                 style={{
                   display: 'flex',
                   position: 'relative',
-                  width: '100px',
-                  height: '100px',
+                  width: window.innerWidth <= 1080 ? '70px' : '100px',
+                  height: window.innerWidth <= 1080 ? '70px' : '100px',
                 }}>
                   <Image src={path} alt={`icon-${index}`}
                   layout= "fill"
