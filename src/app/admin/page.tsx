@@ -37,7 +37,7 @@ export default function AdminPage() {
   async function fetchProjects() {
     setLoading(true);
     try {
-      const { data, error } = await supabase.from<Project>('projects').select('*');
+      const { data, error } = await supabase.from<'projects', Project>('projects').select('*');
       if (error) throw error;
       setProjects(data ?? []);
     } catch (err) {
@@ -51,7 +51,7 @@ export default function AdminPage() {
   useEffect(() => {
     if (session) fetchProjects();
   }, [session]);
-  
+
     async function handleLogin(e: React.FormEvent) {
     e.preventDefault();
     setAuthLoading(true);

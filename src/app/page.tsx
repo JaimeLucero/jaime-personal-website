@@ -58,7 +58,7 @@ export default function Page() {
   async function fetchProjects() {
     setLoading(true);
     try {
-      const { data, error } = await supabase.from<Project>('projects').select('*').order('created_at', { ascending: false });
+      const { data, error } = await supabase.from<'projects', Project>('projects').select('*').order('created_at', { ascending: false });
       if (error) throw error;
       setProjects(data || []);
     } catch (err) {
