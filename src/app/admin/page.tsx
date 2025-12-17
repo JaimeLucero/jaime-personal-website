@@ -51,22 +51,28 @@ export default function AdminPage() {
   useEffect(() => {
     if (session) fetchProjects();
   }, [session]);
-
-  async function handleLogin(e: React.FormEvent) {
+  
+    async function handleLogin(e: React.FormEvent) {
     e.preventDefault();
     setAuthLoading(true);
     try {
-      const { error } = await supabase.auth.signInWithPassword({ email, password });
-      if (error) throw error;
-      setEmail('');
-      setPassword('');
-    } catch (err: any) {
-      console.error('signIn error', err);
-      alert(err.message || 'Sign in failed');
+        const { error } = await supabase.auth.signInWithPassword({ email, password });
+        if (error) throw error;
+        setEmail('');
+        setPassword('');
+    } catch (err: unknown) {
+        console.error('signIn error', err);
+        // Narrow unknown to Error type
+        if (err instanceof Error) {
+        alert(err.message);
+        } else {
+        alert('Sign in failed');
+        }
     } finally {
-      setAuthLoading(false);
+        setAuthLoading(false);
     }
-  }
+    }
+
 
   async function logout() {
     try {
