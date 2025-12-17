@@ -1,9 +1,11 @@
 'use client';
 import React, { useEffect, useState } from 'react';
 import { supabase } from '../../data/supabase';
+import Image from 'next/image';
+import { Session } from '@supabase/supabase-js';
 
 type Project = {
-  id: string; // Supabase auto-generated
+  id: string;
   title: string;
   description: string;
   link?: string;
@@ -11,7 +13,7 @@ type Project = {
 };
 
 export default function AdminPage() {
-  const [session, setSession] = useState<any>(null);
+  const [session, setSession] = useState<Session | null>(null);
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [projects, setProjects] = useState<Project[]>([]);
@@ -23,23 +25,21 @@ export default function AdminPage() {
   const [loading, setLoading] = useState(false);
   const [authLoading, setAuthLoading] = useState(false);
 
-  // Listen to auth changes
+  // Listen for auth changes
   useEffect(() => {
     const { data: listener } = supabase.auth.onAuthStateChange((_event, session) => {
       setSession(session);
     });
-    // Check session on load
     supabase.auth.getSession().then(({ data }) => setSession(data.session));
     return () => listener.subscription.unsubscribe();
   }, []);
 
-  // Fetch projects
   async function fetchProjects() {
     setLoading(true);
     try {
       const { data, error } = await supabase.from<Project>('projects').select('*');
       if (error) throw error;
-      setProjects(data || []);
+      setProjects(data ?? []);
     } catch (err) {
       console.error('fetchProjects error', err);
       setProjects([]);
@@ -56,7 +56,7 @@ export default function AdminPage() {
     e.preventDefault();
     setAuthLoading(true);
     try {
-      const { data, error } = await supabase.auth.signInWithPassword({ email, password });
+      const { error } = await supabase.auth.signInWithPassword({ email, password });
       if (error) throw error;
       setEmail('');
       setPassword('');
@@ -83,8 +83,8 @@ export default function AdminPage() {
     setEditingId(p.id);
     setTitle(p.title);
     setDescription(p.description);
-    setLink(p.link || '');
-    setThumbnail(p.thumbnail || '');
+    setLink(p.link ?? '');
+    setThumbnail(p.thumbnail ?? '');
   }
 
   function cancelEdit() {
@@ -122,7 +122,7 @@ export default function AdminPage() {
     try {
       const { error } = await supabase.from('projects').delete().eq('id', id);
       if (error) throw error;
-      setProjects((prev) => prev.filter((p) => p.id !== id));
+      setProjects(prev => prev.filter(p => p.id !== id));
       if (editingId === id) cancelEdit();
     } catch (err) {
       console.error('deleteProject error', err);
@@ -135,8 +135,8 @@ export default function AdminPage() {
       <div style={styles.container}>
         <h2>Admin Login</h2>
         <form onSubmit={handleLogin} style={styles.form}>
-          <input type="email" placeholder="Email" value={email} onChange={(e) => setEmail(e.target.value)} style={styles.input} required />
-          <input type="password" placeholder="Password" value={password} onChange={(e) => setPassword(e.target.value)} style={styles.input} required />
+          <input type="email" placeholder="Email" value={email} onChange={e => setEmail(e.target.value)} style={styles.input} required />
+          <input type="password" placeholder="Password" value={password} onChange={e => setPassword(e.target.value)} style={styles.input} required />
           <button type="submit" style={styles.button} disabled={authLoading}>{authLoading ? 'Signing in…' : 'Sign in'}</button>
         </form>
       </div>
@@ -153,11 +153,15 @@ export default function AdminPage() {
       <section style={styles.card}>
         <h3>{editingId ? 'Edit Project' : 'New Project'}</h3>
         <form onSubmit={saveProject} style={styles.formColumn}>
-          {thumbnail && <img src={thumbnail} alt="thumbnail preview" style={{ maxWidth: 200, maxHeight: 120, borderRadius: 6, objectFit: 'cover', marginBottom: 8 }} />}
-          <input placeholder="Thumbnail URL (optional)" value={thumbnail} onChange={(e) => setThumbnail(e.target.value)} style={styles.input} />
-          <input placeholder="Title" value={title} onChange={(e) => setTitle(e.target.value)} style={styles.input} />
-          <textarea placeholder="Description" value={description} onChange={(e) => setDescription(e.target.value)} style={styles.textarea} />
-          <input placeholder="Link (optional)" value={link} onChange={(e) => setLink(e.target.value)} style={styles.input} />
+          {thumbnail && (
+            <div style={{ marginBottom: 8, position: 'relative', width: 200, height: 120 }}>
+              <Image src={thumbnail} alt="Thumbnail preview" fill style={{ objectFit: 'cover', borderRadius: 6 }} />
+            </div>
+          )}
+          <input placeholder="Thumbnail URL (optional)" value={thumbnail} onChange={e => setThumbnail(e.target.value)} style={styles.input} />
+          <input placeholder="Title" value={title} onChange={e => setTitle(e.target.value)} style={styles.input} />
+          <textarea placeholder="Description" value={description} onChange={e => setDescription(e.target.value)} style={styles.textarea} />
+          <input placeholder="Link (optional)" value={link} onChange={e => setLink(e.target.value)} style={styles.input} />
           <div style={{ display: 'flex', gap: 8 }}>
             <button type="submit" style={styles.button}>{editingId ? 'Save' : 'Create'}</button>
             {editingId && <button type="button" onClick={cancelEdit} style={styles.buttonAlt}>Cancel</button>}
@@ -172,7 +176,9 @@ export default function AdminPage() {
             {projects.map(p => (
               <li key={p.id} style={styles.projectRow}>
                 <div style={{ display: 'flex', gap: 12, alignItems: 'center', flex: 1 }}>
-                  {p.thumbnail && <img src={p.thumbnail} alt={`${p.title} thumbnail`} style={{ width: 120, height: 80, objectFit: 'cover', borderRadius: 6 }} />}
+                  {p.thumbnail && <div style={{ position: 'relative', width: 120, height: 80 }}>
+                    <Image src={p.thumbnail} alt={`${p.title} thumbnail`} fill style={{ objectFit: 'cover', borderRadius: 6 }} />
+                  </div>}
                   <div style={{ flex: 1 }}>
                     <strong>{p.title}</strong>
                     <p style={{ margin: '4px 0', color: '#333' }}>{p.description}</p>
@@ -191,6 +197,7 @@ export default function AdminPage() {
   );
 }
 
+// Styles
 const styles: { [key: string]: React.CSSProperties } = {
   container: { maxWidth: 900, margin: '32px auto', padding: 16, fontFamily: 'Inter, ui-sans-serif, system-ui' },
   form: { display: 'flex', gap: 8, flexDirection: 'column', alignItems: 'center' },
