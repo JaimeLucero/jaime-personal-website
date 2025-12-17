@@ -1,10 +1,19 @@
 'use client'
+import React, { useEffect, useMemo, useState } from "react"
 import Header from "../../components/header"
 import Image from "next/image"
 import ProjectCard from "../../components/project-card"
 import Footer from "../../components/footer"
-import { useMemo } from "react"
 import { useWindowSize } from '../hooks/windowContextProvider';
+import { supabase } from '../data/supabase';
+
+type Project = {
+  id: string;
+  title: string;
+  description: string;
+  link?: string;
+  thumbnail?: string;
+};
 
 export default function Page() {
   const skillsIcon = useMemo(() => [
@@ -33,7 +42,10 @@ export default function Page() {
   ], []); 
 
   const isMobile = useWindowSize(); 
-  
+
+  const [projects, setProjects] = useState<Project[]>([]);
+  const [loading, setLoading] = useState(false);
+
   const handleIconClick = (index: number) => {
     if (index === 0) {
       navigator.clipboard.writeText(contactLink[index]);
@@ -43,6 +55,23 @@ export default function Page() {
     }
   };
 
+  async function fetchProjects() {
+    setLoading(true);
+    try {
+      const { data, error } = await supabase.from<Project>('projects').select('*').order('created_at', { ascending: false });
+      if (error) throw error;
+      setProjects(data || []);
+    } catch (err) {
+      console.error('fetchProjects error', err);
+      setProjects([]);
+    } finally {
+      setLoading(false);
+    }
+  }
+
+  useEffect(() => {
+    fetchProjects();
+  }, []);
 
   return (
     <div
@@ -204,8 +233,19 @@ export default function Page() {
             alignItems: 'center',
             gap: '20vw'
           }}>
-            <ProjectCard title="DSC USeP-Obrero Website" description="Landing page for DSC USeP-Obrero Chapeter, formerly GDSC USeP-Obrero." thumbnail="dsc-website.svg" link="https://www.gdscusep.com/" />
-            <ProjectCard title="RiceLense" description="A streamlit application for classifying rice grains using images." thumbnail="ricelense.svg" link="https://rice-variety-recognition-usrg8d4nuruupl7pbdrmpz.streamlit.app/"/>
+            {loading ? (
+              <p style={{ color: '#666' }}>Loading…</p>
+            ) : (
+              projects.map((p) => (
+                <ProjectCard
+                  key={p.id}
+                  title={p.title}
+                  description={p.description}
+                  thumbnail={p.thumbnail || ''}
+                  link={p.link || ''}
+                />
+              ))
+            )}
           </div>
         </div>
       </section>
