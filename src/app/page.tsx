@@ -20,6 +20,7 @@ import {
   Users,
   Code,
   Briefcase,
+  FileText,
 } from 'lucide-react';
 
 type Project = {
@@ -623,6 +624,43 @@ export default function Page() {
                   }}>
                   Let&apos;s Talk
                 </button>
+
+                <a
+                  href="/resume.pdf"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="btn-scale"
+                  style={{
+                    display: 'flex',
+                    alignItems: 'center',
+                    justifyContent: 'center',
+                    gap: '8px',
+                    padding: isMobile ? '14px 32px' : '16px 40px',
+                    background: 'transparent',
+                    border: '2px solid rgba(200, 209, 188, 0.4)',
+                    borderRadius: '12px',
+                    cursor: 'pointer',
+                    fontSize: isMobile ? '14px' : '16px',
+                    fontWeight: '700',
+                    color: '#C8D1BC',
+                    transition: 'all 0.3s cubic-bezier(0.4, 0, 0.2, 1)',
+                    minWidth: isMobile ? '100%' : '180px',
+                    letterSpacing: '0.5px',
+                    textDecoration: 'none',
+                  }}
+                  onMouseEnter={(e) => {
+                    e.currentTarget.style.background = 'rgba(200, 209, 188, 0.1)';
+                    e.currentTarget.style.borderColor = 'rgba(200, 209, 188, 0.7)';
+                    e.currentTarget.style.transform = 'translateY(-2px)';
+                  }}
+                  onMouseLeave={(e) => {
+                    e.currentTarget.style.background = 'transparent';
+                    e.currentTarget.style.borderColor = 'rgba(200, 209, 188, 0.4)';
+                    e.currentTarget.style.transform = 'translateY(0)';
+                  }}>
+                  <FileText size={18} />
+                  View Resume
+                </a>
               </div>
             </div>
           </div>
