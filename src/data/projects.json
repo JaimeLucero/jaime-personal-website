@@ -1,0 +1,44 @@
+[
+  {
+    "id": "1",
+    "title": "SBERT Job Description Embeddings",
+    "description": "Fine-tuning Sentence-BERT for advanced job description understanding using 4-way pairing strategy with rich contextual embeddings and ranking metrics.",
+    "link": "https://colab.research.google.com/drive/1sSvTeJjpWBaeBkFqodrv4KwsBCuRxdbW?usp=sharing",
+    "thumbnail": "/sbert-embeddings.svg"
+  },
+  {
+    "id": "2",
+    "title": "LayoutLMv3 Resume Section Embeddings",
+    "description": "Resume image analysis with OCR and LayoutLMv3 training to extract and embed different resume sections for similarity search and analysis.",
+    "link": "https://colab.research.google.com/drive/1ZOVbUxnhtVHfjgEXyrEQ_7W-7pEJAXij?usp=sharing",
+    "thumbnail": "/layoutlm-resume.svg"
+  },
+  {
+    "id": "3",
+    "title": "CONFIT Hyperparameter Tuning",
+    "description": "Hyperparameter optimization for bidirectional alignment model to match resumes with job descriptions, improving weak feature performance.",
+    "link": "https://colab.research.google.com/drive/1fVQyEzWL-xuG9bB-2e72pxRVrGgW_8k8?usp=sharing",
+    "thumbnail": "/confit-tuning.svg"
+  },
+  {
+    "id": "9",
+    "title": "AWS Mock Exams",
+    "description": "Your go-to platform for practicing and preparing for AWS Certification Exams, powered by TutorialsDojo.",
+    "link": "https://play.google.com/store/apps/details?id=com.tutorialsdojo.awsmockexams&hl=en",
+    "thumbnail": "/aws-mock-exams.svg"
+  },
+  {
+    "id": "4",
+    "title": "RiceLense",
+    "description": "A streamlit application for classifying rice grains using images.",
+    "link": "https://rice-variety-recognition-usrg8d4nuruupl7pbdrmpz.streamlit.app/",
+    "thumbnail": "/ricelense.svg"
+  },
+  {
+    "id": "10",
+    "title": "AppAI",
+    "description": "AI-powered recruitment platform connecting top talent with opportunities using intelligent job matching, resume intelligence, and streamlined hiring workflows.",
+    "link": "https://applai-1tpb.vercel.app/",
+    "thumbnail": "/applai.svg"
+  }
+]
