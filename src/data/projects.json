@@ -12,7 +12,11 @@
       "90% less manual searching, matched automatically to skills",
       "Recruiters fill roles 50% faster with AI-scored candidate lists",
       "3x fit accuracy for both applicants and recruiters"
-    ]
+    ],
+    "headlineResult": {
+      "value": "75%",
+      "label": "less job-search time"
+    }
   },
   {
     "id": "9",
@@ -25,7 +29,11 @@
     "outcomes": [
       "Developed and deployed to the Google Play Store",
       "Built during my IT internship at Tutorials Dojo"
-    ]
+    ],
+    "headlineResult": {
+      "value": "Live",
+      "label": "on Google Play"
+    }
   },
   {
     "id": "1",

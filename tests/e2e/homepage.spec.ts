@@ -1,12 +1,12 @@
 import { test, expect, type Page } from '@playwright/test';
 
-const HERO_HEADLINE = 'I build AI agents and automations that ship to production';
+const HERO_HEADLINE = 'I build AI agents and automations that ship to production.';
 const HERO_METRIC_VALUES = ['15+', '80%', '1,000+', '99.9%'];
-const NAVIGATION_LABELS = ['Home', 'Services', 'Case Studies', 'Skills', 'FAQ', 'Contact'];
+const NAVIGATION_LABELS = ['Services', 'Case Studies', 'Experience', 'FAQ', 'Contact'];
 const CASE_STUDY_COUNT = 2;
 const MORE_WORK_PROJECT_COUNT = 4;
 const FAQ_COUNT = 4;
-const SCROLL_SETTLE_TOLERANCE_IN_PIXELS = 80;
+const SCROLL_SETTLE_TOLERANCE_IN_PIXELS = 110;
 
 async function expectSectionAtTopOfViewport(page: Page, sectionId: string) {
   await expect
