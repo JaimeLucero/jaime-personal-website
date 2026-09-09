@@ -60,14 +60,17 @@ export default function SiteSidebar() {
           type="button"
           onClick={() => handleNavigate(HOME_SECTION_ID)}
           className="flex items-center gap-3 text-left lg:block">
-          <Image
-            src="/pfp.svg"
-            alt="Portrait of Jaime Emanuel Lucero"
-            width={96}
-            height={96}
-            priority
-            className="h-11 w-11 shrink-0 rounded-full border border-rule bg-surface object-cover lg:mb-6 lg:h-24 lg:w-24"
-          />
+          <span className="relative block h-11 w-11 shrink-0 lg:mb-8 lg:h-28 lg:w-28">
+            <span aria-hidden="true" className="absolute inset-0 translate-x-1 translate-y-1 rounded-full bg-accent lg:translate-x-2.5 lg:translate-y-2.5" />
+            <Image
+              src="/pfp.svg"
+              alt="Portrait of Jaime Emanuel Lucero"
+              width={112}
+              height={112}
+              priority
+              className="relative h-full w-full rounded-full border-2 border-paper bg-surface object-cover"
+            />
+          </span>
           <span className="block">
             <span className="block font-display text-2xl font-bold tracking-tight text-ink lg:text-4xl">
               Jaime Emanuel Lucero

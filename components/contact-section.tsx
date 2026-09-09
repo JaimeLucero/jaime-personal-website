@@ -16,8 +16,8 @@ const PROFILE_LINKS: ProfileLink[] = [
 ];
 
 const FIELD_CLASS_NAME =
-  'w-full border-0 border-b border-rule bg-transparent px-0 py-2 text-base text-ink placeholder:text-muted/60 focus:border-accent focus:ring-0';
-const LABEL_CLASS_NAME = 'block font-mono text-[11px] uppercase tracking-[0.16em] text-muted';
+  'w-full border-0 border-b border-paper/30 bg-transparent px-0 py-2 text-base text-paper placeholder:text-paper/40 focus:border-accent-soft focus:ring-0';
+const LABEL_CLASS_NAME = 'block font-mono text-[11px] uppercase tracking-[0.16em] text-paper/60';
 
 export default function ContactSection() {
   const [senderName, setSenderName] = useState('');
@@ -69,16 +69,16 @@ export default function ContactSection() {
         <div className="flex flex-col gap-3 sm:flex-row sm:items-center">
           <button
             type="submit"
-            className="inline-flex shrink-0 items-center justify-center whitespace-nowrap rounded bg-accent px-6 py-3 font-medium text-white transition-colors hover:bg-accent-strong">
+            className="inline-flex shrink-0 items-center justify-center whitespace-nowrap rounded bg-accent px-6 py-3 font-medium text-white transition-all hover:-translate-y-0.5 hover:bg-accent-soft hover:text-ink">
             Send Project Brief
           </button>
-          <span className="font-mono text-[11px] uppercase tracking-[0.16em] text-muted">Opens your email app with the message filled in</span>
+          <span className="text-sm text-paper/60">Opens your email app with the message filled in.</span>
         </div>
       </form>
 
       <div className="lg:col-span-2">
-        <p className="font-mono text-[11px] uppercase tracking-[0.16em] text-accent">Or reach me directly</p>
-        <ul data-testid="profile-links" className="mt-3 divide-y divide-rule border-y border-rule">
+        <p className="font-mono text-[11px] uppercase tracking-[0.16em] text-accent-soft">Or reach me directly</p>
+        <ul data-testid="profile-links" className="mt-3 divide-y divide-paper/15 border-y border-paper/15">
           {PROFILE_LINKS.map((profileLink) => (
             <li key={profileLink.label}>
               <a
@@ -86,8 +86,8 @@ export default function ContactSection() {
                 target={profileLink.href.startsWith('mailto:') ? undefined : '_blank'}
                 rel="noopener noreferrer"
                 className="group flex items-baseline justify-between gap-4 py-3">
-                <span className="font-display text-base font-bold text-ink">{profileLink.label}</span>
-                <span className="break-all text-right font-mono text-xs text-muted group-hover:text-ink">{profileLink.handle}</span>
+                <span className="font-display text-base font-bold text-paper">{profileLink.label}</span>
+                <span className="text-right font-mono text-xs text-paper/60 [overflow-wrap:anywhere] group-hover:text-paper">{profileLink.handle}</span>
               </a>
             </li>
           ))}

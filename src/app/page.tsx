@@ -10,6 +10,7 @@ import SkillsList from '../../components/skills-list';
 import FaqList from '../../components/faq-list';
 import ContactSection from '../../components/contact-section';
 import SiteFooter from '../../components/site-footer';
+import Reveal from '../../components/reveal';
 import projectsData from '../data/projects.json';
 import { isCaseStudy, type Project } from '../data/project';
 import {
@@ -36,54 +37,71 @@ export default function Page() {
           <HeroIntro />
 
           <section id={SERVICES_SECTION_ID} className={SECTION_CLASS_NAME}>
-            <ProblemAndBenefits />
-            <div className="mt-20">
+            <Reveal>
+              <ProblemAndBenefits />
+            </Reveal>
+            <Reveal className="mt-20">
               <SectionHeader eyebrow="Services" title="How I can help" />
               <ServicesList />
-            </div>
+            </Reveal>
           </section>
 
           <section id={PROJECTS_SECTION_ID} className={SECTION_CLASS_NAME}>
-            <SectionHeader
-              eyebrow="Case studies"
-              title="Shipped work, with the result it produced"
-              lede="Each entry shows the problem it solved and what changed once it was live."
-            />
-            <div className="border-b border-rule">
+            <Reveal>
+              <SectionHeader
+                eyebrow="Case studies"
+                title="Shipped work, with the result it produced"
+                lede="Each entry shows the problem it solved and what changed once it was live."
+              />
+            </Reveal>
+            <div className="space-y-6">
               {caseStudies.map((caseStudy) => (
-                <CaseStudyRow key={caseStudy.id} caseStudy={caseStudy} />
+                <Reveal key={caseStudy.id}>
+                  <CaseStudyRow caseStudy={caseStudy} />
+                </Reveal>
               ))}
             </div>
 
-            <h3 className="mt-16 font-mono text-xs uppercase tracking-[0.18em] text-accent">More work</h3>
-            <ul data-testid="more-work-grid" className="mt-4 border-b border-rule">
-              {otherProjects.map((project) => (
-                <ProjectRow key={project.id} project={project} />
-              ))}
-            </ul>
+            <Reveal className="mt-16">
+              <h3 className="font-mono text-xs uppercase tracking-[0.18em] text-accent">More work</h3>
+              <ul data-testid="more-work-grid" className="mt-4 border-b border-rule">
+                {otherProjects.map((project) => (
+                  <ProjectRow key={project.id} project={project} />
+                ))}
+              </ul>
+            </Reveal>
           </section>
 
           <section id={EXPERIENCE_SECTION_ID} className={SECTION_CLASS_NAME}>
-            <SectionHeader eyebrow="Experience" title="Where the numbers come from" />
-            <ExperienceList />
-            <div className="mt-12">
+            <Reveal>
+              <SectionHeader eyebrow="Experience" title="Where the numbers come from" />
+              <ExperienceList />
+            </Reveal>
+            <Reveal className="mt-12">
               <p className="mb-6 font-mono text-xs uppercase tracking-[0.18em] text-accent">Technical skills</p>
               <SkillsList />
-            </div>
+            </Reveal>
           </section>
 
           <section id={FAQ_SECTION_ID} className={SECTION_CLASS_NAME}>
-            <SectionHeader eyebrow="FAQ" title="Common questions" />
-            <FaqList />
+            <Reveal>
+              <SectionHeader eyebrow="FAQ" title="Common questions" />
+              <FaqList />
+            </Reveal>
           </section>
 
           <section id={CONTACT_SECTION_ID} className={SECTION_CLASS_NAME}>
-            <SectionHeader
-              eyebrow="Contact"
-              title="Have a process to automate or an AI feature to ship?"
-              lede="Send a short description of what you need and I will come back with a scope and a price."
-            />
-            <ContactSection />
+            <Reveal>
+              <div className="rounded-xl bg-ink p-7 shadow-[0_32px_64px_-32px_rgba(14,20,32,0.6)] sm:p-10 lg:p-12">
+                <SectionHeader
+                  tone="dark"
+                  eyebrow="Contact"
+                  title="Have a process to automate or an AI feature to ship?"
+                  lede="Send a short description of what you need and I will come back with a scope and a price."
+                />
+                <ContactSection />
+              </div>
+            </Reveal>
           </section>
 
           <SiteFooter />

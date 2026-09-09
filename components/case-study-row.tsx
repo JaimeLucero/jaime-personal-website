@@ -9,10 +9,10 @@ export default function CaseStudyRow(props: { caseStudy: CaseStudy }) {
   return (
     <article
       data-testid="case-study-card"
-      className="group grid gap-6 border-t border-rule py-8 transition-colors sm:grid-cols-5 sm:gap-8 sm:hover:bg-accent-soft/60">
+      className="group grid gap-6 rounded-lg border border-rule bg-surface p-6 shadow-sm transition-all hover:-translate-y-1 hover:border-accent/40 hover:shadow-[0_24px_48px_-24px_rgba(42,63,224,0.35)] sm:grid-cols-5 sm:gap-8 sm:p-8">
       <div className="sm:col-span-2">
         {caseStudy.thumbnail && (
-          <div className="diagram-grid mb-5 flex aspect-[4/3] items-center justify-center overflow-hidden rounded border border-rule bg-surface">
+          <div className="diagram-grid mb-5 flex aspect-[4/3] items-center justify-center overflow-hidden rounded border border-rule bg-paper">
             <Image
               src={caseStudy.thumbnail}
               alt={`${caseStudy.title} screenshot`}
