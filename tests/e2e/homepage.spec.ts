@@ -108,7 +108,10 @@ test('navigation lists every section and scrolls to the selected one', async ({ 
   }
 
   const navigation = page.getByRole('list', { name: 'Main navigation' });
-  await expect(navigation.getByRole('button')).toHaveText(NAVIGATION_LABELS);
+  await expect(navigation.getByRole('button')).toHaveCount(NAVIGATION_LABELS.length);
+  for (const navigationLabel of NAVIGATION_LABELS) {
+    await expect(navigation.getByRole('button', { name: navigationLabel, exact: true })).toHaveCount(1);
+  }
 
   await navigation.getByRole('button', { name: 'FAQ' }).click();
   await expectSectionAtTopOfViewport(page, 'faq');

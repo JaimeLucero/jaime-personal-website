@@ -34,8 +34,15 @@ html.dark {
 
 html {
   scroll-behavior: smooth;
-  /* Height of the sticky sheet header. The hero subtracts it to fill the rest of the viewport. */
-  --header-height: 4.9rem;
+  /* Height of the collapsed mobile bar. The hero subtracts it to fill the rest of the viewport. */
+  --header-height: 4.5rem;
+}
+
+/* The sidebar replaces the mobile bar from this width up, so the hero gets the full height. */
+@media (min-width: 1024px) {
+  html {
+    --header-height: 0rem;
+  }
 }
 
 body {
