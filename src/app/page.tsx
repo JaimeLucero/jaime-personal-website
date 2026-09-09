@@ -34,7 +34,7 @@ export default function Page() {
       <SheetFrame />
 
       <div className="mx-auto max-w-site px-8 lg:px-14">
-        <div className="lg:grid lg:grid-cols-12 lg:items-start lg:gap-12 xl:gap-16">
+        <div className="lg:grid lg:grid-cols-12 lg:gap-12 xl:gap-16">
           <div className="lg:col-span-4">
             <SheetSidebar />
           </div>

@@ -145,3 +145,16 @@ test('sidebar marks the section under the viewport as current', async ({ page, i
   await page.evaluate(() => window.scrollTo({ top: 0 }));
   await expect(navigation.locator('[aria-current="true"]')).toHaveCount(0);
 });
+
+test('sidebar stays pinned while the content column scrolls', async ({ page, isMobile }) => {
+  test.skip(isMobile, 'The sidebar collapses into a bar on mobile');
+  const sidebar = page.locator('header');
+  const sidebarTopAtRest = await sidebar.boundingBox();
+
+  await page.evaluate(() => document.getElementById('contact')?.scrollIntoView({ block: 'start' }));
+  await expect.poll(async () => Math.round(await page.evaluate(() => window.scrollY))).toBeGreaterThan(1000);
+
+  const sidebarTopAfterScroll = await sidebar.boundingBox();
+  expect(sidebarTopAfterScroll?.y).toBe(sidebarTopAtRest?.y);
+  await expect(sidebar.getByRole('button', { name: 'Contact', exact: true })).toBeVisible();
+});
