@@ -1,25 +1,8 @@
 'use client';
-import { useMemo } from 'react';
+import { NAVIGATION_ITEMS } from '../src/navigation/navigation-items';
+import { scrollToSection } from '../src/navigation/scroll-to-section';
 
 export default function Footer() {
-    const navItems = useMemo(() => [
-        { id: 'home', label: 'Home' },
-        { id: 'services', label: 'Services' },
-        { id: 'skills', label: 'Skills' },
-        { id: 'projects', label: 'Projects' },
-        { id: 'talk', label: "Let's Talk" }
-    ], []);
-
-    const handleClick = (id: string) => {
-        const section = document.getElementById(id);
-        if (section) {
-            section.scrollIntoView({
-                behavior: 'smooth',
-                block: 'start',
-            });
-        }
-    };
-
     return (
         <div
             style={{
@@ -58,7 +41,7 @@ export default function Footer() {
                             flex: '1',
                             minWidth: '200px',
                         }}>
-                        <h1
+                        <p
                             style={{
                                 font: 'Poppins',
                                 fontSize: '32px',
@@ -67,8 +50,8 @@ export default function Footer() {
                                 marginBottom: '8px',
                             }}>
                             Jaime Lucero
-                        </h1>
-                        <h3
+                        </p>
+                        <p
                             style={{
                                 font: 'Poppins',
                                 fontSize: '14px',
@@ -77,7 +60,7 @@ export default function Footer() {
                                 letterSpacing: '0.5px',
                             }}>
                             Full-Stack AI Engineer
-                        </h3>
+                        </p>
                     </div>
                     <div
                         style={{
@@ -87,7 +70,7 @@ export default function Footer() {
                             flex: '1',
                             minWidth: '200px',
                         }}>
-                        <h1
+                        <p
                             style={{
                                 font: 'Poppins',
                                 fontSize: '16px',
@@ -96,7 +79,7 @@ export default function Footer() {
                                 marginBottom: '16px',
                             }}>
                             Site map:
-                        </h1>
+                        </p>
                         <ul
                             style={{
                                 listStyleType: 'none',
@@ -106,10 +89,10 @@ export default function Footer() {
                                 padding: 0,
                                 gap: '8px',
                             }}>
-                            {navItems.map((item) => (
+                            {NAVIGATION_ITEMS.map((item) => (
                                 <li key={item.id} style={{ padding: '0px' }}>
                                     <button
-                                        onClick={() => handleClick(item.id)}
+                                        onClick={() => scrollToSection(item.id)}
                                         style={{
                                             background: 'none',
                                             border: 'none',
@@ -139,7 +122,7 @@ export default function Footer() {
                     </div>
                 </div>
             </div>
-            <h3
+            <p
                 style={{
                     color: '#9CA3AF',
                     fontSize: '13px',
@@ -147,7 +130,7 @@ export default function Footer() {
                     fontWeight: '400',
                 }}>
                 © 2026 Jaime Emanuel Lucero
-            </h3>
+            </p>
         </div>
     );
 }

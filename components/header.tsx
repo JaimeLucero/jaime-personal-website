@@ -1,23 +1,17 @@
 'use client';
-import { useEffect, useState, useCallback, useMemo } from 'react';
+import { useEffect, useState, useCallback } from 'react';
 import { useWindowSize } from '../src/hooks/windowContextProvider';
 import Image from 'next/image';
+import { CONTACT_SECTION_ID, HOME_SECTION_ID, NAVIGATION_ITEMS } from '../src/navigation/navigation-items';
+import { scrollToSection } from '../src/navigation/scroll-to-section';
 
 export default function Header() {
-    const [activeSection, setActiveSection] = useState<string>('home');
+    const [activeSection, setActiveSection] = useState<string>(HOME_SECTION_ID);
     const [isMenuOpen, setIsMenuOpen] = useState<boolean>(false);
     const isMobile = useWindowSize();
 
-    const navItems = useMemo(() => [
-        { id: 'home', label: 'Home' },
-        { id: 'services', label: 'Services' },
-        { id: 'skills', label: 'Skills' },
-        { id: 'projects', label: 'Projects' },
-        { id: 'talk', label: "Let's Talk" }
-    ], []);
-
     const handleScroll = useCallback(() => {
-        const sections = navItems.map((item) => document.getElementById(item.id));
+        const sections = NAVIGATION_ITEMS.map((navigationItem) => document.getElementById(navigationItem.id));
 
         sections.forEach((section) => {
             if (section) {
@@ -27,7 +21,7 @@ export default function Header() {
                 }
             }
         });
-    }, [navItems]);
+    }, []);
 
     useEffect(() => {
         window.addEventListener('scroll', handleScroll);
@@ -36,14 +30,8 @@ export default function Header() {
         };
     }, [handleScroll]);
 
-    const handleClick = (id: string) => {
-        const section = document.getElementById(id);
-        if (section) {
-            section.scrollIntoView({
-                behavior: 'smooth',
-                block: 'start',
-            });
-        }
+    const handleClick = (sectionId: string) => {
+        scrollToSection(sectionId);
         setIsMenuOpen(false);
     };
 
@@ -75,7 +63,7 @@ export default function Header() {
                         height: '32px',
                         cursor: 'pointer',
                     }}
-                    onClick={() => handleClick('home')}>
+                    onClick={() => handleClick(HOME_SECTION_ID)}>
                     <Image
                         src="/J-logo.svg"
                         alt="Jaime Lucero"
@@ -91,6 +79,7 @@ export default function Header() {
                     height: '100%',
                 }}>
                 <button
+                    aria-label="Toggle navigation menu"
                     style={{
                         display: isMobile ? 'flex' : 'none',
                         background: 'none',
@@ -106,6 +95,7 @@ export default function Header() {
                 </button>
 
                 <ul
+                    aria-label="Main navigation"
                     style={{
                         listStyleType: 'none',
                         display: isMobile && !isMenuOpen ? 'none' : 'flex',
@@ -122,44 +112,48 @@ export default function Header() {
                         boxShadow: isMobile ? '0 4px 20px rgba(0, 0, 0, 0.5)' : 'none',
                         alignItems: 'center',
                     }}>
-                    {navItems.map((item) => (
-                        <li
-                            key={item.id}
-                            style={{
-                                width: isMobile ? '100%' : 'auto',
-                            }}>
-                            <button
-                                onClick={() => handleClick(item.id)}
+                    {NAVIGATION_ITEMS.map((navigationItem) => {
+                        const isContactItem = navigationItem.id === CONTACT_SECTION_ID;
+                        const isActive = navigationItem.id === activeSection;
+                        return (
+                            <li
+                                key={navigationItem.id}
                                 style={{
-                                    display: 'flex',
-                                    alignItems: 'center',
-                                    justifyContent: isMobile ? 'flex-start' : 'center',
-                                    width: '100%',
-                                    padding: isMobile ? '16px 20px' : '0 20px',
-                                    height: isMobile ? 'auto' : '36px',
-                                    background: item.id === 'talk' && !isMobile ? '#4A7C3F' : 'transparent',
-                                    border: 'none',
-                                    borderRadius: '6px',
-                                    cursor: 'pointer',
-                                    transition: 'all 0.2s ease',
+                                    width: isMobile ? '100%' : 'auto',
                                 }}>
-                                <span
+                                <button
+                                    onClick={() => handleClick(navigationItem.id)}
                                     style={{
-                                        font: 'Poppins',
-                                        fontSize: isMobile ? '18px' : '15px',
-                                        fontWeight: item.id === activeSection ? '600' : '400',
-                                        color: activeSection === item.id
-                                            ? '#4A7C3F'
-                                            : item.id === 'talk' && !isMobile
-                                                ? '#F0F0F0'
-                                                : '#9CA3AF',
-                                        transition: 'color 0.2s ease',
+                                        display: 'flex',
+                                        alignItems: 'center',
+                                        justifyContent: isMobile ? 'flex-start' : 'center',
+                                        width: '100%',
+                                        padding: isMobile ? '16px 20px' : '0 20px',
+                                        height: isMobile ? 'auto' : '36px',
+                                        background: isContactItem && !isMobile ? '#4A7C3F' : 'transparent',
+                                        border: 'none',
+                                        borderRadius: '6px',
+                                        cursor: 'pointer',
+                                        transition: 'all 0.2s ease',
                                     }}>
-                                    {item.label}
-                                </span>
-                            </button>
-                        </li>
-                    ))}
+                                    <span
+                                        style={{
+                                            font: 'Poppins',
+                                            fontSize: isMobile ? '18px' : '15px',
+                                            fontWeight: isActive ? '600' : '400',
+                                            color: isActive
+                                                ? '#4A7C3F'
+                                                : isContactItem && !isMobile
+                                                    ? '#F0F0F0'
+                                                    : '#9CA3AF',
+                                            transition: 'color 0.2s ease',
+                                        }}>
+                                        {navigationItem.label}
+                                    </span>
+                                </button>
+                            </li>
+                        );
+                    })}
                 </ul>
             </div>
         </div>

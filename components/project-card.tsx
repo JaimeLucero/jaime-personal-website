@@ -91,7 +91,7 @@ export default function ProjectCard(props: {
                     zIndex: 2,
                 }}>
                 <div>
-                    <h1
+                    <h3
                         style={{
                             fontSize: '18px',
                             fontWeight: '700',
@@ -101,8 +101,8 @@ export default function ProjectCard(props: {
                             letterSpacing: '-0.3px',
                         }}>
                         {props.title}
-                    </h1>
-                    <h3
+                    </h3>
+                    <p
                         style={{
                             fontSize: '14px',
                             fontWeight: '400',
@@ -112,7 +112,7 @@ export default function ProjectCard(props: {
                             letterSpacing: '0.2px',
                         }}>
                         {props.description}
-                    </h3>
+                    </p>
                 </div>
                 <div
                     style={{
