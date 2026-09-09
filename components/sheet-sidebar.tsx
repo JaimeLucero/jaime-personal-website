@@ -89,7 +89,7 @@ export default function SheetSidebar() {
             width={PORTRAIT_SIZE_IN_PIXELS}
             height={PORTRAIT_SIZE_IN_PIXELS}
             priority
-            className="h-10 w-10 shrink-0 border border-rule object-cover lg:mb-7 lg:h-24 lg:w-24"
+            className="h-10 w-10 shrink-0 object-cover lg:mb-7 lg:h-24 lg:w-24"
           />
           <span className="block">
             <span className="block font-display text-base font-bold leading-tight text-ink [font-stretch:110%] lg:text-[34px]">
