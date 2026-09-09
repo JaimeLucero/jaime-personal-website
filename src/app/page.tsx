@@ -21,7 +21,11 @@ import {
   EXPERIENCE_SECTION_ID,
 } from '../navigation/navigation-items';
 
-const SECTION_CLASS_NAME = 'scroll-mt-24 pt-32 sm:pt-40 lg:pt-48 lg:scroll-mt-10';
+/*
+  Spacing lives in the margin, not the padding, so a jump from the index lands
+  on the section's first line of content rather than on top of its whitespace.
+*/
+const SECTION_CLASS_NAME = 'mt-32 scroll-mt-6 sm:mt-40 lg:mt-48 lg:scroll-mt-10';
 const DETAIL_LETTERS = ['A', 'B', 'C', 'D', 'E', 'F'];
 
 export default function Page() {
@@ -42,12 +46,13 @@ export default function Page() {
           <main className="lg:col-span-8 lg:pb-10">
             <HeroIntro />
 
-            <section id={SERVICES_SECTION_ID} className={SECTION_CLASS_NAME}>
+            <div className="mt-32 sm:mt-40 lg:mt-48">
               <ProblemAndBenefits />
-              <div className="mt-32 sm:mt-40">
-                <SectionHeader eyebrow="Services" title="How I can help" />
-                <ServicesList />
-              </div>
+            </div>
+
+            <section id={SERVICES_SECTION_ID} className={SECTION_CLASS_NAME}>
+              <SectionHeader eyebrow="Services" title="How I can help" />
+              <ServicesList />
             </section>
 
             <section id={PROJECTS_SECTION_ID} className={SECTION_CLASS_NAME}>
