@@ -22,6 +22,22 @@ body {
   font-stretch: 87.5%;
 }
 
+.diagram-grid {
+  background-image: linear-gradient(to right, rgba(214, 219, 225, 0.55) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(214, 219, 225, 0.55) 1px, transparent 1px);
+  background-size: 24px 24px;
+}
+
+.pipeline-flow {
+  animation: pipeline-flow 1.2s linear infinite;
+}
+
+@keyframes pipeline-flow {
+  to {
+    stroke-dashoffset: -16;
+  }
+}
+
 @media (prefers-reduced-motion: reduce) {
   html {
     scroll-behavior: auto;

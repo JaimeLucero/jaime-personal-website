@@ -1,5 +1,6 @@
 'use client';
 import { useEffect, useState } from 'react';
+import Image from 'next/image';
 import { HOME_SECTION_ID, NAVIGATION_ITEMS } from '../src/navigation/navigation-items';
 import { scrollToSection } from '../src/navigation/scroll-to-section';
 import { CONTACT_EMAIL } from '../src/contact/project-brief-mailto';
@@ -58,12 +59,22 @@ export default function SiteSidebar() {
         <button
           type="button"
           onClick={() => handleNavigate(HOME_SECTION_ID)}
-          className="text-left">
-          <span className="block font-display text-2xl font-bold tracking-tight text-ink lg:text-4xl">
-            Jaime Emanuel Lucero
-          </span>
-          <span className="mt-1 block font-mono text-xs uppercase tracking-[0.18em] text-muted lg:mt-3 lg:text-sm">
-            Full-stack AI engineer
+          className="flex items-center gap-3 text-left lg:block">
+          <Image
+            src="/pfp.svg"
+            alt="Portrait of Jaime Emanuel Lucero"
+            width={96}
+            height={96}
+            priority
+            className="h-11 w-11 shrink-0 rounded-full border border-rule bg-surface object-cover lg:mb-6 lg:h-24 lg:w-24"
+          />
+          <span className="block">
+            <span className="block font-display text-2xl font-bold tracking-tight text-ink lg:text-4xl">
+              Jaime Emanuel Lucero
+            </span>
+            <span className="mt-1 block font-mono text-xs uppercase tracking-[0.18em] text-muted lg:mt-3 lg:text-sm">
+              Full-stack AI engineer
+            </span>
           </span>
         </button>
 

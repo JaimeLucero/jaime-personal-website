@@ -41,9 +41,13 @@ const EXPERIENCE_ENTRIES: ExperienceEntry[] = [
 
 export default function ExperienceList() {
   return (
-    <ol data-testid="experience-strip" className="border-t border-rule">
-      {EXPERIENCE_ENTRIES.map((entry) => (
-        <li key={entry.organization} className="grid gap-2 border-b border-rule py-6 sm:grid-cols-5 sm:gap-8">
+    <ol data-testid="experience-strip" className="relative border-l-2 border-rule">
+      {EXPERIENCE_ENTRIES.map((entry, index) => (
+        <li key={entry.organization} className="relative grid gap-2 py-6 pl-8 sm:grid-cols-5 sm:gap-8">
+          <span
+            aria-hidden="true"
+            className={`absolute -left-[7px] top-8 h-3 w-3 rounded-full border-2 border-paper ${index === 0 ? 'bg-accent ring-4 ring-accent-soft' : 'bg-rule'}`}
+          />
           <p className="font-mono text-[11px] uppercase tracking-[0.16em] text-muted sm:col-span-2 sm:pt-1">{entry.period}</p>
           <div className="sm:col-span-3">
             <h3 className="font-display text-lg font-bold leading-tight text-ink">

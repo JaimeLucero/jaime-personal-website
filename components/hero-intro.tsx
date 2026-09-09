@@ -1,4 +1,5 @@
 'use client';
+import PipelineDiagram from './pipeline-diagram';
 import { CONTACT_SECTION_ID, HOME_SECTION_ID, PROJECTS_SECTION_ID } from '../src/navigation/navigation-items';
 import { scrollToSection } from '../src/navigation/scroll-to-section';
 
@@ -49,9 +50,13 @@ export default function HeroIntro() {
         </a>
       </div>
 
+      <div className="mt-12">
+        <PipelineDiagram />
+      </div>
+
       <dl
         data-testid="hero-metrics"
-        className="mt-14 grid grid-cols-2 gap-px border-y border-rule bg-rule sm:grid-cols-4">
+        className="mt-8 grid grid-cols-2 gap-px border-y border-rule bg-rule sm:grid-cols-4">
         {HERO_METRICS.map((metric) => (
           <div key={metric.label} className="bg-paper py-5 pr-4 [&:nth-child(even)]:pl-5 sm:[&:nth-child(n+2)]:pl-5">
             <dd className="display-condensed font-display text-3xl font-bold leading-none text-ink">{metric.value}</dd>

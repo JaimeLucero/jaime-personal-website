@@ -1,4 +1,7 @@
+import Image from 'next/image';
 import type { CaseStudy } from '../src/data/project';
+
+const THUMBNAIL_SIZE_IN_PIXELS = 160;
 
 export default function CaseStudyRow(props: { caseStudy: CaseStudy }) {
   const { caseStudy } = props;
@@ -8,7 +11,18 @@ export default function CaseStudyRow(props: { caseStudy: CaseStudy }) {
       data-testid="case-study-card"
       className="group grid gap-6 border-t border-rule py-8 transition-colors sm:grid-cols-5 sm:gap-8 sm:hover:bg-accent-soft/60">
       <div className="sm:col-span-2">
-        <p className="display-condensed font-display text-6xl font-extrabold leading-none tracking-tight text-accent sm:text-7xl">
+        {caseStudy.thumbnail && (
+          <div className="diagram-grid mb-5 flex aspect-[4/3] items-center justify-center overflow-hidden rounded border border-rule bg-surface">
+            <Image
+              src={caseStudy.thumbnail}
+              alt={`${caseStudy.title} screenshot`}
+              width={THUMBNAIL_SIZE_IN_PIXELS}
+              height={THUMBNAIL_SIZE_IN_PIXELS}
+              className="h-3/4 w-auto object-contain transition-transform group-hover:scale-105"
+            />
+          </div>
+        )}
+        <p className="display-condensed font-display text-5xl font-extrabold leading-none tracking-tight text-accent sm:text-6xl">
           {caseStudy.headlineResult.value}
         </p>
         <p className="mt-2 font-mono text-[11px] uppercase tracking-[0.16em] text-muted">{caseStudy.headlineResult.label}</p>
