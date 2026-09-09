@@ -39,7 +39,7 @@ export default function Page() {
             <SheetSidebar />
           </div>
 
-          <main className="lg:col-span-8 lg:py-10">
+          <main className="lg:col-span-8 lg:pb-10">
             <HeroIntro />
 
             <section id={SERVICES_SECTION_ID} className={SECTION_CLASS_NAME}>
