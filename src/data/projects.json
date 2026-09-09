@@ -1,5 +1,41 @@
 [
   {
+    "id": "10",
+    "title": "ApplAI",
+    "description": "AI-powered recruitment platform matching applicants to roles by skill and ranking candidates for recruiters the moment a job is posted.",
+    "link": "https://applai-1tpb.vercel.app/",
+    "thumbnail": "/applai.svg",
+    "isFeatured": true,
+    "problem": "Applicants scroll through listings that do not match their skills, while recruiters screen candidates by hand.",
+    "outcomes": [
+      "75% less job-search time for applicants",
+      "90% less manual searching, matched automatically to skills",
+      "Recruiters fill roles 50% faster with AI-scored candidate lists",
+      "3x fit accuracy for both applicants and recruiters"
+    ],
+    "headlineResult": {
+      "value": "75%",
+      "label": "less job-search time"
+    }
+  },
+  {
+    "id": "9",
+    "title": "AWS Mock Exams",
+    "description": "Mobile practice-exam app for AWS certification preparation, published by Tutorials Dojo.",
+    "link": "https://play.google.com/store/apps/details?id=com.tutorialsdojo.awsmockexams&hl=en",
+    "thumbnail": "/aws-mock-exams.svg",
+    "isFeatured": true,
+    "problem": "Learners preparing for AWS certifications needed practice exams they could take on a phone.",
+    "outcomes": [
+      "Developed and deployed to the Google Play Store",
+      "Built during my IT internship at Tutorials Dojo"
+    ],
+    "headlineResult": {
+      "value": "Live",
+      "label": "on Google Play"
+    }
+  },
+  {
     "id": "1",
     "title": "SBERT Job Description Embeddings",
     "description": "Fine-tuning Sentence-BERT for advanced job description understanding using 4-way pairing strategy with rich contextual embeddings and ranking metrics.",
@@ -21,24 +57,10 @@
     "thumbnail": "/confit-tuning.svg"
   },
   {
-    "id": "9",
-    "title": "AWS Mock Exams",
-    "description": "Your go-to platform for practicing and preparing for AWS Certification Exams, powered by TutorialsDojo.",
-    "link": "https://play.google.com/store/apps/details?id=com.tutorialsdojo.awsmockexams&hl=en",
-    "thumbnail": "/aws-mock-exams.svg"
-  },
-  {
     "id": "4",
     "title": "RiceLense",
     "description": "A streamlit application for classifying rice grains using images.",
     "link": "https://rice-variety-recognition-usrg8d4nuruupl7pbdrmpz.streamlit.app/",
     "thumbnail": "/ricelense.svg"
-  },
-  {
-    "id": "10",
-    "title": "AppAI",
-    "description": "AI-powered recruitment platform connecting top talent with opportunities using intelligent job matching, resume intelligence, and streamlined hiring workflows.",
-    "link": "https://applai-1tpb.vercel.app/",
-    "thumbnail": "/applai.svg"
   }
 ]
