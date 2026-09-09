@@ -10,9 +10,9 @@ const LEDE_COLOR_BY_TONE: Record<SectionTone, string> = {
   dark: 'text-panel-ink/70',
 };
 
-const EYEBROW_COLOR_BY_TONE: Record<SectionTone, string> = {
-  light: 'text-accent',
-  dark: 'text-accent',
+const RULE_COLOR_BY_TONE: Record<SectionTone, string> = {
+  light: 'border-rule',
+  dark: 'border-panel-rule/20',
 };
 
 export default function SectionHeader(props: { eyebrow: string; title: string; lede?: string; tone?: SectionTone }) {
@@ -20,11 +20,12 @@ export default function SectionHeader(props: { eyebrow: string; title: string; l
 
   return (
     <div className="mb-10">
-      <p className={`font-mono text-xs uppercase tracking-[0.14em] ${EYEBROW_COLOR_BY_TONE[tone]}`}>{props.eyebrow}</p>
-      <h2 className={`display-condensed mt-3 font-display text-3xl font-bold leading-tight tracking-tight sm:text-4xl ${TITLE_COLOR_BY_TONE[tone]}`}>
-        {props.title}
-      </h2>
-      {props.lede && <p className={`mt-4 max-w-xl text-base leading-relaxed ${LEDE_COLOR_BY_TONE[tone]}`}>{props.lede}</p>}
+      <div className={`flex items-center gap-3 border-t ${RULE_COLOR_BY_TONE[tone]} pt-3`}>
+        <span aria-hidden="true" className="h-2 w-2 bg-accent" />
+        <p className="type-eyebrow">{props.eyebrow}</p>
+      </div>
+      <h2 className={`type-section mt-4 ${TITLE_COLOR_BY_TONE[tone]}`}>{props.title}</h2>
+      {props.lede && <p className={`type-lede mt-4 max-w-2xl ${LEDE_COLOR_BY_TONE[tone]}`}>{props.lede}</p>}
     </div>
   );
 }

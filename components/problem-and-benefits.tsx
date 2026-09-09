@@ -31,11 +31,11 @@ export default function ProblemAndBenefits() {
   return (
     <div className="grid gap-10 lg:grid-cols-5 lg:gap-12">
       <div className="lg:col-span-2">
-        <p className="font-mono text-xs uppercase tracking-[0.14em] text-accent">The problem</p>
-        <p className="display-condensed mt-3 font-display text-xl font-bold leading-snug text-ink">
+        <p className="type-eyebrow">The problem</p>
+        <p className="type-card-title mt-3">
           A process eating hours of manual work every week, or an AI feature your competitors already shipped.
         </p>
-        <p className="mt-4 text-base leading-relaxed text-muted">
+        <p className="type-body mt-4">
           Hiring a full team is slow and expensive. A demo that only works on stage does not help either. You need
           someone who can scope it, build it, and keep it running.
         </p>
@@ -43,12 +43,12 @@ export default function ProblemAndBenefits() {
       <ul data-testid="benefits-list" className="divide-y divide-rule border-y border-rule lg:col-span-3">
         {BENEFITS.map((benefit) => (
           <li key={benefit.title} className="flex gap-4 py-5">
-            <span aria-hidden="true" className="mt-0.5 flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-accent-soft text-accent">
+            <span aria-hidden="true" className="mt-0.5 flex h-9 w-9 shrink-0 items-center justify-center bg-accent-soft text-accent">
               {benefit.icon}
             </span>
             <div>
-              <h3 className="font-display text-lg font-bold text-ink">{benefit.title}</h3>
-              <p className="mt-1 text-base leading-relaxed text-muted">{benefit.detail}</p>
+              <h3 className="type-item-title">{benefit.title}</h3>
+              <p className="type-body mt-1">{benefit.detail}</p>
             </div>
           </li>
         ))}

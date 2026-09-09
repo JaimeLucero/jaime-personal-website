@@ -128,3 +128,17 @@ test('page loads without console errors', async ({ page }) => {
   await expect(page.getByRole('heading', { level: 1 })).toBeVisible();
   expect(consoleErrors).toEqual([]);
 });
+
+test('sidebar marks the section under the viewport as current', async ({ page, isMobile }) => {
+  test.skip(isMobile, 'Section navigation is collapsed behind the menu on mobile');
+  const navigation = page.getByRole('list', { name: 'Main navigation' });
+
+  await expect(navigation.locator('[aria-current="true"]')).toHaveCount(0);
+
+  await navigation.getByRole('button', { name: 'Case Studies' }).click();
+  await expect(navigation.getByRole('button', { name: 'Case Studies' })).toHaveAttribute('aria-current', 'true');
+  await expect(navigation.locator('[aria-current="true"]')).toHaveCount(1);
+
+  await page.evaluate(() => window.scrollTo({ top: 0 }));
+  await expect(navigation.locator('[aria-current="true"]')).toHaveCount(0);
+});

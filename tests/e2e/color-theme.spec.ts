@@ -10,7 +10,7 @@ test('site opens in dark mode by default', async ({ page }) => {
 
 test('theme toggle switches to light mode and remembers it after reload', async ({ page }) => {
   await page.goto('/');
-  const themeToggle = page.getByTestId('theme-toggle').locator('visible=true').first();
+  const themeToggle = page.getByTestId('theme-toggle').first();
 
   await themeToggle.click();
   await expect(page.locator('html')).not.toHaveClass(new RegExp(`\\b${DARK_CLASS_NAME}\\b`));
@@ -19,6 +19,6 @@ test('theme toggle switches to light mode and remembers it after reload', async 
   await page.reload();
   await expect(page.locator('html')).not.toHaveClass(new RegExp(`\\b${DARK_CLASS_NAME}\\b`));
 
-  await page.getByTestId('theme-toggle').locator('visible=true').first().click();
+  await page.getByTestId('theme-toggle').first().click();
   await expect(page.locator('html')).toHaveClass(new RegExp(`\\b${DARK_CLASS_NAME}\\b`));
 });

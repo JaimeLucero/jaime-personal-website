@@ -1,11 +1,11 @@
 import '../styles/globals.css';
 import type { Metadata } from 'next';
-import { Bricolage_Grotesque, IBM_Plex_Sans, IBM_Plex_Mono } from 'next/font/google';
+import { Archivo, IBM_Plex_Sans, IBM_Plex_Mono } from 'next/font/google';
 import { APPLY_STORED_THEME_SCRIPT, DARK_THEME_CLASS_NAME } from '../theme/color-theme';
 
-const displayFont = Bricolage_Grotesque({
+const displayFont = Archivo({
   subsets: ['latin'],
-  axes: ['wdth', 'opsz'],
+  axes: ['wdth'],
   variable: '--font-display',
 });
 

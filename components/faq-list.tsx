@@ -31,9 +31,9 @@ export default function FaqList() {
       {FAQ_ENTRIES.map((entry) => (
         <div key={entry.question} className="grid gap-2 py-6 sm:grid-cols-5 sm:gap-8">
           <dt className="sm:col-span-2">
-            <h3 className="font-display text-lg font-bold leading-tight text-ink">{entry.question}</h3>
+            <h3 className="type-item-title">{entry.question}</h3>
           </dt>
-          <dd className="text-base leading-relaxed text-muted sm:col-span-3">{entry.answer}</dd>
+          <dd className="type-body sm:col-span-3">{entry.answer}</dd>
         </div>
       ))}
     </dl>

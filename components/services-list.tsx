@@ -46,13 +46,13 @@ export default function ServicesList() {
         <li key={service.title} className="group flex gap-4 bg-surface p-6 transition-colors hover:bg-accent-soft/40">
           <span
             aria-hidden="true"
-            className="flex h-11 w-11 shrink-0 items-center justify-center rounded bg-accent-soft text-accent transition-colors group-hover:bg-accent group-hover:text-paper">
+            className="flex h-11 w-11 shrink-0 items-center justify-center bg-accent-soft text-accent transition-colors group-hover:bg-accent group-hover:text-paper">
             {service.icon}
           </span>
           <div>
-            <h3 className="display-condensed font-display text-xl font-bold leading-tight text-ink">{service.title}</h3>
-            <p className="mt-2 text-base leading-relaxed text-muted">{service.description}</p>
-            <p className="mt-3 font-mono text-xs uppercase tracking-[0.12em] text-ink">{service.stack}</p>
+            <h3 className="type-card-title">{service.title}</h3>
+            <p className="type-body mt-2">{service.description}</p>
+            <p className="type-label mt-3">{service.stack}</p>
           </div>
         </li>
       ))}

@@ -32,7 +32,7 @@ export default {
         mono: ['var(--font-mono)', 'monospace'],
       },
       maxWidth: {
-        site: '1240px',
+        site: '1360px',
       },
     },
   },

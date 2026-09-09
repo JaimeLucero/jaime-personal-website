@@ -4,32 +4,32 @@
 
 :root {
   color-scheme: light;
-  --color-paper: 243 245 247;
+  --color-paper: 244 245 242;
   --color-surface: 255 255 255;
-  --color-ink: 14 20 32;
-  --color-muted: 91 100 112;
-  --color-rule: 214 219 225;
+  --color-ink: 18 22 18;
+  --color-muted: 92 100 92;
+  --color-rule: 206 212 204;
   --color-accent: 46 139 74;
   --color-accent-strong: 35 112 59;
   --color-accent-soft: 223 242 229;
-  --color-panel: 14 20 32;
-  --color-panel-ink: 243 245 247;
-  --color-panel-rule: 243 245 247;
+  --color-panel: 18 22 18;
+  --color-panel-ink: 244 245 242;
+  --color-panel-rule: 244 245 242;
 }
 
 html.dark {
   color-scheme: dark;
-  --color-paper: 13 13 13;
-  --color-surface: 21 21 21;
-  --color-ink: 240 240 240;
-  --color-muted: 156 163 175;
-  --color-rule: 42 42 42;
+  --color-paper: 14 16 14;
+  --color-surface: 22 25 22;
+  --color-ink: 236 238 234;
+  --color-muted: 150 158 148;
+  --color-rule: 46 52 46;
   --color-accent: 106 174 91;
   --color-accent-strong: 52 168 83;
   --color-accent-soft: 27 46 29;
-  --color-panel: 21 24 20;
-  --color-panel-ink: 240 240 240;
-  --color-panel-rule: 240 240 240;
+  --color-panel: 22 25 22;
+  --color-panel-ink: 236 238 234;
+  --color-panel-rule: 236 238 234;
 }
 
 html {
@@ -38,8 +38,6 @@ html {
 
 body {
   @apply bg-paper text-ink font-body antialiased;
-  background-image: radial-gradient(rgb(var(--color-ink) / 0.07) 1px, transparent 1px);
-  background-size: 22px 22px;
 }
 
 ::selection {
@@ -50,14 +48,89 @@ body {
   @apply outline-none ring-2 ring-accent ring-offset-2 ring-offset-paper;
 }
 
-.display-condensed {
-  font-stretch: 95%;
-}
+/*
+  Type scale. Display and section titles use the wide cut of Archivo so
+  headings read as engineering sheet lettering; item titles fall back to the
+  body face so the four heading levels never look alike.
+*/
+@layer components {
+  .type-display {
+    @apply font-display text-[40px] font-extrabold leading-[1.02] tracking-[-0.015em] text-ink sm:text-[52px] lg:text-[60px];
+    font-stretch: 112%;
+  }
 
-.diagram-grid {
-  background-image: linear-gradient(to right, rgb(var(--color-rule) / 0.55) 1px, transparent 1px),
-    linear-gradient(to bottom, rgb(var(--color-rule) / 0.55) 1px, transparent 1px);
-  background-size: 24px 24px;
+  .type-section {
+    @apply font-display text-[30px] font-bold leading-[1.1] tracking-[-0.01em] text-ink sm:text-[38px];
+    font-stretch: 110%;
+  }
+
+  .type-card-title {
+    @apply font-display text-[22px] font-bold leading-[1.2] text-ink sm:text-[24px];
+    font-stretch: 104%;
+  }
+
+  .type-item-title {
+    @apply font-body text-lg font-semibold leading-snug text-ink;
+  }
+
+  .type-lede {
+    @apply font-body text-lg leading-[1.6] text-muted sm:text-xl;
+  }
+
+  .type-body {
+    @apply font-body text-base leading-[1.7] text-muted;
+  }
+
+  .type-small {
+    @apply font-body text-sm leading-[1.6] text-muted;
+  }
+
+  .type-eyebrow {
+    @apply font-mono text-xs font-medium uppercase tracking-[0.14em] text-accent;
+  }
+
+  .type-label {
+    @apply font-mono text-xs uppercase tracking-[0.1em] text-muted;
+  }
+
+  .type-figure {
+    @apply font-display text-6xl font-extrabold leading-none tracking-[-0.02em] text-accent sm:text-7xl;
+    font-stretch: 112%;
+  }
+
+  .type-metric {
+    @apply font-display text-[32px] font-bold leading-none tracking-[-0.01em] text-ink;
+    font-stretch: 108%;
+  }
+
+  /* Ruler ticks along the sheet frame: a long tick every 100px, short ticks every 20px. */
+  .sheet-ruler-x {
+    background-image: repeating-linear-gradient(
+        to right,
+        rgb(var(--color-rule)) 0 1px,
+        transparent 1px 20px
+      ),
+      repeating-linear-gradient(to right, rgb(var(--color-muted)) 0 1px, transparent 1px 100px);
+    background-size: 100% 6px, 100% 12px;
+    background-repeat: no-repeat;
+  }
+
+  .sheet-ruler-y {
+    background-image: repeating-linear-gradient(
+        to bottom,
+        rgb(var(--color-rule)) 0 1px,
+        transparent 1px 20px
+      ),
+      repeating-linear-gradient(to bottom, rgb(var(--color-muted)) 0 1px, transparent 1px 100px);
+    background-size: 6px 100%, 12px 100%;
+    background-repeat: no-repeat;
+  }
+
+  .drawing-grid {
+    background-image: linear-gradient(to right, rgb(var(--color-rule) / 0.5) 1px, transparent 1px),
+      linear-gradient(to bottom, rgb(var(--color-rule) / 0.5) 1px, transparent 1px);
+    background-size: 20px 20px;
+  }
 }
 
 .pipeline-flow {
@@ -67,37 +140,6 @@ body {
 @keyframes pipeline-flow {
   to {
     stroke-dashoffset: -16;
-  }
-}
-
-.reveal {
-  opacity: 0;
-  transform: translateY(18px);
-  transition: opacity 0.6s ease-out, transform 0.6s ease-out;
-}
-
-.reveal.is-visible {
-  opacity: 1;
-  transform: none;
-}
-
-.status-dot::after {
-  content: '';
-  position: absolute;
-  inset: 0;
-  border-radius: 9999px;
-  background: currentColor;
-  animation: status-ping 1.8s ease-out infinite;
-}
-
-@keyframes status-ping {
-  0% {
-    transform: scale(1);
-    opacity: 0.6;
-  }
-  100% {
-    transform: scale(2.6);
-    opacity: 0;
   }
 }
 
@@ -111,10 +153,5 @@ body {
   *::after {
     animation: none !important;
     transition: none !important;
-  }
-
-  .reveal {
-    opacity: 1;
-    transform: none;
   }
 }

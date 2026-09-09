@@ -46,17 +46,17 @@ export default function ExperienceList() {
         <li key={entry.organization} className="relative grid gap-2 py-6 pl-8 sm:grid-cols-5 sm:gap-8">
           <span
             aria-hidden="true"
-            className={`absolute -left-[7px] top-8 h-3 w-3 rounded-full border-2 border-paper ${index === 0 ? 'bg-accent ring-4 ring-accent-soft' : 'bg-rule'}`}
+            className={`absolute -left-[7px] top-8 h-3 w-3 border-2 border-paper ${index === 0 ? 'bg-accent ring-4 ring-accent-soft' : 'bg-rule'}`}
           />
-          <p className="font-mono text-xs uppercase tracking-[0.12em] text-muted sm:col-span-2 sm:pt-1">{entry.period}</p>
+          <p className="type-label sm:col-span-2 sm:pt-1.5">{entry.period}</p>
           <div className="sm:col-span-3">
-            <h3 className="font-display text-lg font-bold leading-tight text-ink">
+            <h3 className="type-card-title">
               {entry.organization}
-              <span className="block text-sm font-medium text-muted">{entry.role}</span>
+              <span className="type-small mt-1 block font-medium">{entry.role}</span>
             </h3>
             <ul className="mt-3 space-y-1.5">
               {entry.highlights.map((highlight) => (
-                <li key={highlight} className="flex gap-3 text-base leading-relaxed text-muted">
+                <li key={highlight} className="type-body flex gap-3">
                   <span aria-hidden="true" className="mt-[9px] h-1.5 w-1.5 shrink-0 bg-rule" />
                   <span>{highlight}</span>
                 </li>

@@ -26,7 +26,7 @@ export default function ThemeToggle(props: { className?: string }) {
       aria-label={`Switch to ${nextColorTheme} mode`}
       data-testid="theme-toggle"
       data-color-theme={colorTheme}
-      className={`inline-flex h-10 w-10 items-center justify-center rounded border border-rule text-muted transition-colors hover:border-accent hover:text-accent ${props.className ?? ''}`}>
+      className={`inline-flex h-10 w-10 items-center justify-center border border-rule text-muted transition-colors hover:border-accent hover:text-accent ${props.className ?? ''}`}>
       {colorTheme === 'dark' ? <Sun size={ICON_SIZE_IN_PIXELS} /> : <Moon size={ICON_SIZE_IN_PIXELS} />}
     </button>
   );
