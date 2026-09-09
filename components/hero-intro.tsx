@@ -24,7 +24,7 @@ const HERO_SUBHEADLINE =
 export default function HeroIntro() {
   return (
     <section id={HOME_SECTION_ID} className="pt-12 lg:pt-0">
-      <p className="flex items-center gap-2.5 font-mono text-xs uppercase tracking-[0.18em] text-accent">
+      <p className="flex items-center gap-2.5 font-mono text-xs uppercase tracking-[0.14em] text-accent">
         <span aria-hidden="true" className="status-dot relative block h-2 w-2 rounded-full bg-accent" />
         Available for projects
       </p>
@@ -38,7 +38,7 @@ export default function HeroIntro() {
         <button
           type="button"
           onClick={() => scrollToSection(CONTACT_SECTION_ID)}
-          className="inline-flex items-center justify-center rounded bg-accent px-6 py-3 font-medium text-white shadow-[0_8px_24px_-8px_rgba(42,63,224,0.6)] transition-all hover:-translate-y-0.5 hover:bg-accent-strong">
+          className="inline-flex items-center justify-center rounded bg-accent px-6 py-3 font-medium text-paper shadow-[0_8px_24px_-8px_rgb(var(--color-accent)/0.6)] transition-all hover:-translate-y-0.5 hover:bg-accent-strong">
           Email Me About Your Project
         </button>
         <button
@@ -51,7 +51,7 @@ export default function HeroIntro() {
           href="/resume.pdf"
           target="_blank"
           rel="noopener noreferrer"
-          className="inline-flex items-center justify-center px-2 py-3 font-mono text-xs uppercase tracking-[0.18em] text-muted underline-offset-4 hover:text-ink hover:underline">
+          className="inline-flex items-center justify-center px-2 py-3 font-mono text-xs uppercase tracking-[0.14em] text-muted underline-offset-4 hover:text-ink hover:underline">
           View Resume
         </a>
       </div>
@@ -68,7 +68,7 @@ export default function HeroIntro() {
             <dd className="display-condensed font-display text-3xl font-bold leading-none text-ink">
               <AnimatedNumber value={metric.value} />
             </dd>
-            <dt className="mt-2 font-mono text-[11px] uppercase tracking-[0.16em] text-muted">{metric.label}</dt>
+            <dt className="mt-2 font-mono text-xs uppercase tracking-[0.12em] text-muted">{metric.label}</dt>
           </div>
         ))}
       </dl>

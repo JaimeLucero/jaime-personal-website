@@ -2,14 +2,72 @@
 @tailwind components;
 @tailwind utilities;
 
+:root {
+  color-scheme: light;
+  --color-paper: 243 245 247;
+  --color-surface: 255 255 255;
+  --color-ink: 14 20 32;
+  --color-muted: 91 100 112;
+  --color-rule: 214 219 225;
+  --color-accent: 46 139 74;
+  --color-accent-strong: 35 112 59;
+  --color-accent-soft: 223 242 229;
+  --color-panel: 14 20 32;
+  --color-panel-ink: 243 245 247;
+  --color-panel-rule: 243 245 247;
+}
+
+html.dark {
+  color-scheme: dark;
+  --color-paper: 13 13 13;
+  --color-surface: 21 21 21;
+  --color-ink: 240 240 240;
+  --color-muted: 156 163 175;
+  --color-rule: 42 42 42;
+  --color-accent: 106 174 91;
+  --color-accent-strong: 52 168 83;
+  --color-accent-soft: 27 46 29;
+  --color-panel: 21 24 20;
+  --color-panel-ink: 240 240 240;
+  --color-panel-rule: 240 240 240;
+}
+
 html {
   scroll-behavior: smooth;
 }
 
 body {
   @apply bg-paper text-ink font-body antialiased;
-  background-image: radial-gradient(rgba(14, 20, 32, 0.07) 1px, transparent 1px);
+  background-image: radial-gradient(rgb(var(--color-ink) / 0.07) 1px, transparent 1px);
   background-size: 22px 22px;
+}
+
+::selection {
+  @apply bg-accent text-paper;
+}
+
+:focus-visible {
+  @apply outline-none ring-2 ring-accent ring-offset-2 ring-offset-paper;
+}
+
+.display-condensed {
+  font-stretch: 95%;
+}
+
+.diagram-grid {
+  background-image: linear-gradient(to right, rgb(var(--color-rule) / 0.55) 1px, transparent 1px),
+    linear-gradient(to bottom, rgb(var(--color-rule) / 0.55) 1px, transparent 1px);
+  background-size: 24px 24px;
+}
+
+.pipeline-flow {
+  animation: pipeline-flow 1.2s linear infinite;
+}
+
+@keyframes pipeline-flow {
+  to {
+    stroke-dashoffset: -16;
+  }
 }
 
 .reveal {
@@ -40,34 +98,6 @@ body {
   100% {
     transform: scale(2.6);
     opacity: 0;
-  }
-}
-
-::selection {
-  @apply bg-accent text-white;
-}
-
-:focus-visible {
-  @apply outline-none ring-2 ring-accent ring-offset-2 ring-offset-paper;
-}
-
-.display-condensed {
-  font-stretch: 87.5%;
-}
-
-.diagram-grid {
-  background-image: linear-gradient(to right, rgba(214, 219, 225, 0.55) 1px, transparent 1px),
-    linear-gradient(to bottom, rgba(214, 219, 225, 0.55) 1px, transparent 1px);
-  background-size: 24px 24px;
-}
-
-.pipeline-flow {
-  animation: pipeline-flow 1.2s linear infinite;
-}
-
-@keyframes pipeline-flow {
-  to {
-    stroke-dashoffset: -16;
   }
 }
 

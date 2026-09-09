@@ -48,7 +48,7 @@ export default function ExperienceList() {
             aria-hidden="true"
             className={`absolute -left-[7px] top-8 h-3 w-3 rounded-full border-2 border-paper ${index === 0 ? 'bg-accent ring-4 ring-accent-soft' : 'bg-rule'}`}
           />
-          <p className="font-mono text-[11px] uppercase tracking-[0.16em] text-muted sm:col-span-2 sm:pt-1">{entry.period}</p>
+          <p className="font-mono text-xs uppercase tracking-[0.12em] text-muted sm:col-span-2 sm:pt-1">{entry.period}</p>
           <div className="sm:col-span-3">
             <h3 className="font-display text-lg font-bold leading-tight text-ink">
               {entry.organization}
@@ -56,7 +56,7 @@ export default function ExperienceList() {
             </h3>
             <ul className="mt-3 space-y-1.5">
               {entry.highlights.map((highlight) => (
-                <li key={highlight} className="flex gap-3 text-sm leading-relaxed text-muted">
+                <li key={highlight} className="flex gap-3 text-base leading-relaxed text-muted">
                   <span aria-hidden="true" className="mt-[9px] h-1.5 w-1.5 shrink-0 bg-rule" />
                   <span>{highlight}</span>
                 </li>

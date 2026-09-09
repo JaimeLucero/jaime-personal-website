@@ -1,19 +1,29 @@
 import type { Config } from 'tailwindcss';
 
+function tokenColor(variableName: string): string {
+  return `rgb(var(${variableName}) / <alpha-value>)`;
+}
+
 export default {
   content: ['./src/app/**/*.{ts,tsx}', './components/**/*.{ts,tsx}'],
+  darkMode: 'class',
   theme: {
     extend: {
       colors: {
-        paper: '#F3F5F7',
-        surface: '#FFFFFF',
-        ink: '#0E1420',
-        muted: '#5B6470',
-        rule: '#D6DBE1',
+        paper: tokenColor('--color-paper'),
+        surface: tokenColor('--color-surface'),
+        ink: tokenColor('--color-ink'),
+        muted: tokenColor('--color-muted'),
+        rule: tokenColor('--color-rule'),
         accent: {
-          DEFAULT: '#2A3FE0',
-          strong: '#1D2FB8',
-          soft: '#E6E9FB',
+          DEFAULT: tokenColor('--color-accent'),
+          strong: tokenColor('--color-accent-strong'),
+          soft: tokenColor('--color-accent-soft'),
+        },
+        panel: {
+          DEFAULT: tokenColor('--color-panel'),
+          ink: tokenColor('--color-panel-ink'),
+          rule: tokenColor('--color-panel-rule'),
         },
       },
       fontFamily: {

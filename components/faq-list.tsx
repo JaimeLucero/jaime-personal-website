@@ -7,12 +7,12 @@ const FAQ_ENTRIES: FaqEntry[] = [
   {
     question: 'Can one engineer handle the whole project?',
     answer:
-      'Yes. At Inventiv I build features end to end: database, backend, AI integration, frontend, and deployment. You get one point of contact for the whole build.',
+      'Yes. I build features end to end: database, backend, AI integration, frontend, and deployment. You get one point of contact for the whole build.',
   },
   {
     question: 'Will the AI work in production or only in a demo?',
     answer:
-      'The systems I maintain at Inventiv run at 99.9% uptime for 1,000+ users. I deploy on infrastructure you own and hand over the code and documentation.',
+      'The systems I maintain run at 99.9% uptime for 1,000+ users. I deploy on infrastructure you own and hand over the code and documentation.',
   },
   {
     question: 'Are you available for contract work or full-time roles?',
@@ -33,7 +33,7 @@ export default function FaqList() {
           <dt className="sm:col-span-2">
             <h3 className="font-display text-lg font-bold leading-tight text-ink">{entry.question}</h3>
           </dt>
-          <dd className="text-sm leading-relaxed text-muted sm:col-span-3">{entry.answer}</dd>
+          <dd className="text-base leading-relaxed text-muted sm:col-span-3">{entry.answer}</dd>
         </div>
       ))}
     </dl>

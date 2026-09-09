@@ -1,6 +1,7 @@
 'use client';
 import { useEffect, useState } from 'react';
 import Image from 'next/image';
+import ThemeToggle from './theme-toggle';
 import { HOME_SECTION_ID, NAVIGATION_ITEMS } from '../src/navigation/navigation-items';
 import { scrollToSection } from '../src/navigation/scroll-to-section';
 import { CONTACT_EMAIL } from '../src/contact/project-brief-mailto';
@@ -61,34 +62,36 @@ export default function SiteSidebar() {
           onClick={() => handleNavigate(HOME_SECTION_ID)}
           className="flex items-center gap-3 text-left lg:block">
           <span className="relative block h-11 w-11 shrink-0 lg:mb-8 lg:h-28 lg:w-28">
-            <span aria-hidden="true" className="absolute inset-0 translate-x-1 translate-y-1 rounded-full bg-accent lg:translate-x-2.5 lg:translate-y-2.5" />
             <Image
               src="/pfp.svg"
               alt="Portrait of Jaime Emanuel Lucero"
               width={112}
               height={112}
               priority
-              className="relative h-full w-full rounded-full border-2 border-paper bg-surface object-cover"
+              className="relative h-full w-full rounded-full border border-rule bg-surface object-cover"
             />
           </span>
           <span className="block">
             <span className="block font-display text-2xl font-bold tracking-tight text-ink lg:text-4xl">
               Jaime Emanuel Lucero
             </span>
-            <span className="mt-1 block font-mono text-xs uppercase tracking-[0.18em] text-muted lg:mt-3 lg:text-sm">
+            <span className="mt-1 block font-mono text-xs uppercase tracking-[0.14em] text-muted lg:mt-3 lg:text-sm">
               Full-stack AI engineer
             </span>
           </span>
         </button>
 
-        <button
-          type="button"
-          aria-label="Toggle navigation menu"
-          aria-expanded={isMenuOpen}
-          onClick={() => setIsMenuOpen((isOpen) => !isOpen)}
-          className="flex h-10 w-10 items-center justify-center rounded border border-rule text-ink lg:hidden">
-          <span aria-hidden="true" className="block h-0.5 w-5 bg-ink shadow-[0_-6px_0_0_#0E1420,0_6px_0_0_#0E1420]" />
-        </button>
+        <div className="flex items-center gap-2 lg:hidden">
+          <ThemeToggle />
+          <button
+            type="button"
+            aria-label="Toggle navigation menu"
+            aria-expanded={isMenuOpen}
+            onClick={() => setIsMenuOpen((isOpen) => !isOpen)}
+            className="flex h-10 w-10 items-center justify-center rounded border border-rule text-ink">
+            <span aria-hidden="true" className="block h-0.5 w-5 bg-ink shadow-[0_-6px_0_0_rgb(var(--color-ink)),0_6px_0_0_rgb(var(--color-ink))]" />
+          </button>
+        </div>
       </div>
 
       <p className="hidden max-w-xs text-base leading-relaxed text-muted lg:mt-6 lg:block">
@@ -105,7 +108,7 @@ export default function SiteSidebar() {
                 <button
                   type="button"
                   onClick={() => handleNavigate(navigationItem.id)}
-                  className="group flex w-full items-center gap-4 py-2 text-left font-mono text-xs uppercase tracking-[0.18em]">
+                  className="group flex w-full items-center gap-4 py-2 text-left font-mono text-[13px] uppercase tracking-[0.14em]">
                   <span
                     aria-hidden="true"
                     className={`h-px bg-ink transition-all ${isActive ? 'w-14 bg-accent' : 'w-6 bg-rule group-hover:w-14 group-hover:bg-ink'}`}
@@ -118,19 +121,22 @@ export default function SiteSidebar() {
         </ul>
       </nav>
 
-      <ul className="hidden flex-wrap gap-x-6 gap-y-2 lg:flex">
+      <div className="hidden items-center justify-between gap-6 lg:flex">
+      <ul className="flex flex-wrap gap-x-6 gap-y-2">
         {SIDEBAR_LINKS.map((sidebarLink) => (
           <li key={sidebarLink.label}>
             <a
               href={sidebarLink.href}
               target={sidebarLink.href.startsWith('mailto:') ? undefined : '_blank'}
               rel="noopener noreferrer"
-              className="font-mono text-xs uppercase tracking-[0.18em] text-muted underline-offset-4 hover:text-ink hover:underline">
+              className="font-mono text-xs uppercase tracking-[0.14em] text-muted underline-offset-4 hover:text-ink hover:underline">
               {sidebarLink.label}
             </a>
           </li>
         ))}
       </ul>
+      <ThemeToggle className="shrink-0" />
+      </div>
     </header>
   );
 }

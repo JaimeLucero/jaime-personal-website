@@ -63,7 +63,7 @@ export default function Page() {
             </div>
 
             <Reveal className="mt-16">
-              <h3 className="font-mono text-xs uppercase tracking-[0.18em] text-accent">More work</h3>
+              <h3 className="font-mono text-xs uppercase tracking-[0.14em] text-accent">More work</h3>
               <ul data-testid="more-work-grid" className="mt-4 border-b border-rule">
                 {otherProjects.map((project) => (
                   <ProjectRow key={project.id} project={project} />
@@ -78,7 +78,7 @@ export default function Page() {
               <ExperienceList />
             </Reveal>
             <Reveal className="mt-12">
-              <p className="mb-6 font-mono text-xs uppercase tracking-[0.18em] text-accent">Technical skills</p>
+              <p className="mb-6 font-mono text-xs uppercase tracking-[0.14em] text-accent">Technical skills</p>
               <SkillsList />
             </Reveal>
           </section>
@@ -92,7 +92,7 @@ export default function Page() {
 
           <section id={CONTACT_SECTION_ID} className={SECTION_CLASS_NAME}>
             <Reveal>
-              <div className="rounded-xl bg-ink p-7 shadow-[0_32px_64px_-32px_rgba(14,20,32,0.6)] sm:p-10 lg:p-12">
+              <div className="rounded-xl border border-rule bg-panel p-7 shadow-[0_32px_64px_-32px_rgb(var(--color-ink)/0.5)] sm:p-10 lg:p-12">
                 <SectionHeader
                   tone="dark"
                   eyebrow="Contact"

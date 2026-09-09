@@ -18,7 +18,7 @@ const BENEFITS: Benefit[] = [
   {
     icon: <Gauge size={BENEFIT_ICON_SIZE_IN_PIXELS} strokeWidth={1.75} />,
     title: 'Measured results',
-    detail: 'Automation pipelines at Inventiv cut manual processing by up to 80% and sped up decision-making by 40%.',
+    detail: 'My automation pipelines cut manual processing by up to 80% and sped up decision-making by 40%.',
   },
   {
     icon: <ShieldCheck size={BENEFIT_ICON_SIZE_IN_PIXELS} strokeWidth={1.75} />,
@@ -31,7 +31,7 @@ export default function ProblemAndBenefits() {
   return (
     <div className="grid gap-10 lg:grid-cols-5 lg:gap-12">
       <div className="lg:col-span-2">
-        <p className="font-mono text-xs uppercase tracking-[0.18em] text-accent">The problem</p>
+        <p className="font-mono text-xs uppercase tracking-[0.14em] text-accent">The problem</p>
         <p className="display-condensed mt-3 font-display text-xl font-bold leading-snug text-ink">
           A process eating hours of manual work every week, or an AI feature your competitors already shipped.
         </p>
@@ -48,7 +48,7 @@ export default function ProblemAndBenefits() {
             </span>
             <div>
               <h3 className="font-display text-lg font-bold text-ink">{benefit.title}</h3>
-              <p className="mt-1 text-sm leading-relaxed text-muted">{benefit.detail}</p>
+              <p className="mt-1 text-base leading-relaxed text-muted">{benefit.detail}</p>
             </div>
           </li>
         ))}

@@ -35,20 +35,19 @@ function PipelineSchematic() {
         const endX = stageLeft(stageIndex + 1);
         return (
           <g key={stageIndex}>
-            <line x1={startX} y1={STAGE_MIDDLE_Y} x2={endX} y2={STAGE_MIDDLE_Y} stroke="#D6DBE1" strokeWidth="2" />
+            <line x1={startX} y1={STAGE_MIDDLE_Y} x2={endX} y2={STAGE_MIDDLE_Y} className="stroke-rule" strokeWidth="2" />
             <line
               x1={startX}
               y1={STAGE_MIDDLE_Y}
               x2={endX}
               y2={STAGE_MIDDLE_Y}
-              stroke="#2A3FE0"
               strokeWidth="2"
               strokeDasharray="6 10"
-              className="pipeline-flow"
+              className="pipeline-flow stroke-accent"
             />
             <polygon
               points={`${endX - 8},${STAGE_MIDDLE_Y - 5} ${endX},${STAGE_MIDDLE_Y} ${endX - 8},${STAGE_MIDDLE_Y + 5}`}
-              fill="#2A3FE0"
+              className="fill-accent"
             />
           </g>
         );
@@ -65,29 +64,28 @@ function PipelineSchematic() {
               width={STAGE_WIDTH}
               height={STAGE_HEIGHT}
               rx="4"
-              fill={isAgentStage ? '#E6E9FB' : '#F3F5F7'}
-              stroke={isAgentStage ? '#2A3FE0' : '#D6DBE1'}
+              className={isAgentStage ? 'fill-accent-soft stroke-accent' : 'fill-paper stroke-rule'}
               strokeWidth={isAgentStage ? 1.5 : 1}
             />
             <text
               x={left + STAGE_WIDTH / 2}
               y={STAGE_TOP + 30}
               textAnchor="middle"
-              fontSize="13"
+              fontSize="14"
               fontWeight="600"
-              fill="#0E1420"
+              className="fill-ink"
               fontFamily="var(--font-body)">
               {stage.label}
             </text>
-            <text x={left + STAGE_WIDTH / 2} y={STAGE_TOP + 52} textAnchor="middle" fontSize="9.5" fill="#5B6470" letterSpacing="0.3">
+            <text x={left + STAGE_WIDTH / 2} y={STAGE_TOP + 52} textAnchor="middle" fontSize="10.5" className="fill-muted" letterSpacing="0.2">
               {stage.detail}
             </text>
             <text
               x={left}
               y={STAGE_TOP + STAGE_HEIGHT + 22}
-              fontSize="10"
-              fill={isAgentStage ? '#2A3FE0' : '#5B6470'}
-              letterSpacing="1.5">
+              fontSize="11"
+              className={isAgentStage ? 'fill-accent' : 'fill-muted'}
+              letterSpacing="1.2">
               {stage.phase.toUpperCase()}
             </text>
           </g>
@@ -108,9 +106,9 @@ function PipelineStack() {
               <span aria-hidden="true" className="mx-auto mb-2 block h-4 w-px border-l-2 border-dashed border-accent" />
             )}
             <div className={`rounded border px-4 py-3 ${isAgentStage ? 'border-accent bg-accent-soft' : 'border-rule bg-paper'}`}>
-              <p className={`font-mono text-[10px] uppercase tracking-[0.16em] ${isAgentStage ? 'text-accent' : 'text-muted'}`}>{stage.phase}</p>
+              <p className={`font-mono text-[11px] uppercase tracking-[0.12em] ${isAgentStage ? 'text-accent' : 'text-muted'}`}>{stage.phase}</p>
               <p className="mt-1 text-sm font-semibold text-ink">{stage.label}</p>
-              <p className="mt-0.5 font-mono text-[11px] text-muted">{stage.detail}</p>
+              <p className="mt-0.5 font-mono text-xs text-muted">{stage.detail}</p>
             </div>
           </li>
         );

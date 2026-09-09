@@ -9,7 +9,7 @@ export default function CaseStudyRow(props: { caseStudy: CaseStudy }) {
   return (
     <article
       data-testid="case-study-card"
-      className="group grid gap-6 rounded-lg border border-rule bg-surface p-6 shadow-sm transition-all hover:-translate-y-1 hover:border-accent/40 hover:shadow-[0_24px_48px_-24px_rgba(42,63,224,0.35)] sm:grid-cols-5 sm:gap-8 sm:p-8">
+      className="group grid gap-6 rounded-lg border border-rule bg-surface p-6 shadow-sm transition-all hover:-translate-y-1 hover:border-accent/40 hover:shadow-[0_24px_48px_-24px_rgb(var(--color-accent)/0.45)] sm:grid-cols-5 sm:gap-8 sm:p-8">
       <div className="sm:col-span-2">
         {caseStudy.thumbnail && (
           <div className="diagram-grid mb-5 flex aspect-[4/3] items-center justify-center overflow-hidden rounded border border-rule bg-paper">
@@ -25,7 +25,7 @@ export default function CaseStudyRow(props: { caseStudy: CaseStudy }) {
         <p className="display-condensed font-display text-5xl font-extrabold leading-none tracking-tight text-accent sm:text-6xl">
           {caseStudy.headlineResult.value}
         </p>
-        <p className="mt-2 font-mono text-[11px] uppercase tracking-[0.16em] text-muted">{caseStudy.headlineResult.label}</p>
+        <p className="mt-2 font-mono text-xs uppercase tracking-[0.12em] text-muted">{caseStudy.headlineResult.label}</p>
       </div>
 
       <div className="sm:col-span-3">
@@ -36,19 +36,19 @@ export default function CaseStudyRow(props: { caseStudy: CaseStudy }) {
               href={caseStudy.link}
               target="_blank"
               rel="noopener noreferrer"
-              className="shrink-0 font-mono text-[11px] uppercase tracking-[0.16em] text-muted underline-offset-4 hover:text-ink hover:underline">
+              className="shrink-0 font-mono text-xs uppercase tracking-[0.12em] text-muted underline-offset-4 hover:text-ink hover:underline">
               View project <span aria-hidden="true" className="inline-block transition-transform group-hover:-translate-y-0.5 group-hover:translate-x-0.5">↗</span>
             </a>
           )}
         </div>
 
-        <p className="mt-4 font-mono text-[11px] uppercase tracking-[0.16em] text-accent">Problem</p>
-        <p className="mt-1 text-sm leading-relaxed text-muted">{caseStudy.problem}</p>
+        <p className="mt-4 font-mono text-xs uppercase tracking-[0.12em] text-accent">Problem</p>
+        <p className="mt-1 text-base leading-relaxed text-muted">{caseStudy.problem}</p>
 
-        <p className="mt-4 font-mono text-[11px] uppercase tracking-[0.16em] text-accent">Result</p>
+        <p className="mt-4 font-mono text-xs uppercase tracking-[0.12em] text-accent">Result</p>
         <ul className="mt-1 space-y-1.5">
           {caseStudy.outcomes.map((outcome) => (
-            <li key={outcome} className="flex gap-3 text-sm leading-relaxed text-ink">
+            <li key={outcome} className="flex gap-3 text-base leading-relaxed text-ink">
               <span aria-hidden="true" className="mt-[9px] h-1.5 w-1.5 shrink-0 bg-accent" />
               <span>{outcome}</span>
             </li>
