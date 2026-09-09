@@ -12,7 +12,7 @@ const HERO_SUBHEADLINE =
 
 export default function HeroIntro() {
   return (
-    <section id={HOME_SECTION_ID} className="pt-10 lg:pt-14">
+    <section id={HOME_SECTION_ID} className="hero-viewport">
       <div className="grid gap-10 lg:grid-cols-12 lg:gap-12">
         <div className="lg:col-span-7">
           <h1 className="type-display max-w-3xl">
@@ -49,7 +49,7 @@ export default function HeroIntro() {
         </div>
       </div>
 
-      <div className="mt-14 grid gap-8 lg:grid-cols-12 lg:gap-12">
+      <div className="grid gap-8 lg:grid-cols-12 lg:gap-12">
         <div className="lg:col-span-8">
           <PipelineDiagram />
         </div>

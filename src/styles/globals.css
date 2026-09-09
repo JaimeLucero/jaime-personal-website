@@ -34,6 +34,8 @@ html.dark {
 
 html {
   scroll-behavior: smooth;
+  /* Height of the sticky sheet header. The hero subtracts it to fill the rest of the viewport. */
+  --header-height: 4.9rem;
 }
 
 body {
@@ -54,6 +56,18 @@ body {
   body face so the four heading levels never look alike.
 */
 @layer components {
+  /*
+    The hero occupies the viewport below the header and centres itself in it.
+    On a tall screen the spare height splits evenly above and below; on a short
+    one the block simply grows past the fold rather than clipping its own top.
+  */
+  .hero-viewport {
+    min-height: calc(100svh - var(--header-height));
+    @apply flex flex-col justify-center;
+    padding-block: clamp(2rem, 5vh, 5rem);
+    row-gap: clamp(2.5rem, 6vh, 4.5rem);
+  }
+
   .type-display {
     @apply font-display text-[40px] font-extrabold leading-[1.02] tracking-[-0.015em] text-ink sm:text-[52px] lg:text-[60px];
     font-stretch: 112%;

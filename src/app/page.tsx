@@ -21,7 +21,7 @@ import {
   EXPERIENCE_SECTION_ID,
 } from '../navigation/navigation-items';
 
-const SECTION_CLASS_NAME = 'scroll-mt-24 pt-24';
+const SECTION_CLASS_NAME = 'scroll-mt-24 pt-32 sm:pt-40 lg:pt-48';
 const DETAIL_LETTERS = ['A', 'B', 'C', 'D', 'E', 'F'];
 
 export default function Page() {
@@ -39,7 +39,7 @@ export default function Page() {
 
         <section id={SERVICES_SECTION_ID} className={SECTION_CLASS_NAME}>
           <ProblemAndBenefits />
-          <div className="mt-24">
+          <div className="mt-32 sm:mt-40">
             <SectionHeader eyebrow="Services" title="How I can help" />
             <ServicesList />
           </div>
