@@ -1,3 +1,4 @@
+import Reveal from './reveal';
 type FaqEntry = {
   question: string;
   answer: string;
@@ -28,13 +29,13 @@ const FAQ_ENTRIES: FaqEntry[] = [
 export default function FaqList() {
   return (
     <dl data-testid="faq-list" className="divide-y divide-rule border-y border-rule">
-      {FAQ_ENTRIES.map((entry) => (
-        <div key={entry.question} className="grid gap-2 py-6 sm:grid-cols-5 sm:gap-8">
+      {FAQ_ENTRIES.map((entry, index) => (
+        <Reveal key={entry.question} staggerIndex={index} className="grid gap-2 py-6 sm:grid-cols-5 sm:gap-8">
           <dt className="sm:col-span-2">
             <h3 className="type-item-title">{entry.question}</h3>
           </dt>
           <dd className="type-body sm:col-span-3">{entry.answer}</dd>
-        </div>
+        </Reveal>
       ))}
     </dl>
   );

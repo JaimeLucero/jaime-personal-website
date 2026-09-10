@@ -9,22 +9,37 @@ const HERO_HEADLINE_PAYOFF = 'ship to production.';
 const HERO_SUBHEADLINE =
   'Full-stack AI engineer turning ideas into working products: LLM agents, automation pipelines, and Next.js apps users rely on.';
 
+// The hero sets itself top to bottom, with the payoff phrase arriving after the line it closes.
+const SHEET_LABEL_DELAY = '0s';
+const HEADLINE_DELAY = '0.08s';
+const PAYOFF_DELAY = '0.42s';
+const SUBHEADLINE_DELAY = '0.24s';
+const ACTIONS_DELAY = '0.34s';
+const DIAGRAM_DELAY = '0.46s';
+
 export default function HeroIntro() {
   return (
     <section id={HOME_SECTION_ID} className="hero-viewport">
       <div>
-        <div className="flex items-center gap-3">
+        <div className="motion-rise flex items-center gap-3" style={{ animationDelay: SHEET_LABEL_DELAY }}>
           <span aria-hidden="true" className="h-2 w-2 bg-accent" />
           <p className="type-eyebrow">Sheet 01. Overview</p>
         </div>
 
-        <h1 className="type-display mt-5">
+        <h1 className="type-display motion-rise mt-5" style={{ animationDelay: HEADLINE_DELAY }}>
           {HERO_HEADLINE_LEAD}
-          <span className="text-accent">{HERO_HEADLINE_PAYOFF}</span>
+          <span className="motion-fade text-accent" style={{ animationDelay: PAYOFF_DELAY }}>
+            {HERO_HEADLINE_PAYOFF}
+          </span>
         </h1>
-        <p className="type-lede mt-6 max-w-2xl">{HERO_SUBHEADLINE}</p>
 
-        <div className="mt-8 flex flex-col gap-3 sm:flex-row sm:items-center">
+        <p className="type-lede motion-rise mt-6 max-w-2xl" style={{ animationDelay: SUBHEADLINE_DELAY }}>
+          {HERO_SUBHEADLINE}
+        </p>
+
+        <div
+          className="motion-rise mt-8 flex flex-col gap-3 sm:flex-row sm:items-center"
+          style={{ animationDelay: ACTIONS_DELAY }}>
           <button
             type="button"
             onClick={() => scrollToSection(CONTACT_SECTION_ID)}
@@ -47,7 +62,7 @@ export default function HeroIntro() {
         </div>
       </div>
 
-      <div className="grid gap-8 xl:grid-cols-5 xl:gap-10">
+      <div className="motion-rise grid gap-8 xl:grid-cols-5 xl:gap-10" style={{ animationDelay: DIAGRAM_DELAY }}>
         <div className="xl:col-span-3">
           <PipelineDiagram />
         </div>

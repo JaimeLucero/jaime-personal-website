@@ -11,6 +11,7 @@ import SkillsList from '../../components/skills-list';
 import FaqList from '../../components/faq-list';
 import ContactSection from '../../components/contact-section';
 import SiteFooter from '../../components/site-footer';
+import Reveal from '../../components/reveal';
 import projectsData from '../data/projects.json';
 import { isCaseStudy, type Project } from '../data/project';
 import {
@@ -51,46 +52,62 @@ export default function Page() {
             </div>
 
             <section id={SERVICES_SECTION_ID} className={SECTION_CLASS_NAME}>
-              <SectionHeader eyebrow="Services" title="How I can help" />
+              <Reveal>
+                <SectionHeader eyebrow="Services" title="How I can help" />
+              </Reveal>
               <ServicesList />
             </section>
 
             <section id={PROJECTS_SECTION_ID} className={SECTION_CLASS_NAME}>
-              <SectionHeader
-                eyebrow="Case studies"
-                title="Shipped work, with the result it produced"
-                lede="Each detail shows the problem it solved and what changed once it was live."
-              />
+              <Reveal>
+                <SectionHeader
+                  eyebrow="Case studies"
+                  title="Shipped work, with the result it produced"
+                  lede="Each detail shows the problem it solved and what changed once it was live."
+                />
+              </Reveal>
               <div className="border-b border-rule">
                 {caseStudies.map((caseStudy, index) => (
-                  <CaseStudyRow key={caseStudy.id} caseStudy={caseStudy} detailLetter={DETAIL_LETTERS[index]} />
+                  <Reveal key={caseStudy.id}>
+                    <CaseStudyRow caseStudy={caseStudy} detailLetter={DETAIL_LETTERS[index]} />
+                  </Reveal>
                 ))}
               </div>
 
-              <h3 className="type-eyebrow mt-16">More work</h3>
+              <Reveal>
+                <h3 className="type-eyebrow mt-16">More work</h3>
+              </Reveal>
               <ul data-testid="more-work-grid" className="mt-4 border-b border-rule">
-                {otherProjects.map((project) => (
-                  <ProjectRow key={project.id} project={project} />
+                {otherProjects.map((project, index) => (
+                  <Reveal key={project.id} staggerIndex={index}>
+                    <ProjectRow project={project} />
+                  </Reveal>
                 ))}
               </ul>
             </section>
 
             <section id={EXPERIENCE_SECTION_ID} className={SECTION_CLASS_NAME}>
-              <SectionHeader eyebrow="Experience" title="Where the numbers come from" />
+              <Reveal>
+                <SectionHeader eyebrow="Experience" title="Where the numbers come from" />
+              </Reveal>
               <ExperienceList />
               <div className="mt-12">
-                <p className="type-eyebrow mb-6">Technical skills</p>
+                <Reveal>
+                  <p className="type-eyebrow mb-6">Technical skills</p>
+                </Reveal>
                 <SkillsList />
               </div>
             </section>
 
             <section id={FAQ_SECTION_ID} className={SECTION_CLASS_NAME}>
-              <SectionHeader eyebrow="FAQ" title="Common questions" />
+              <Reveal>
+                <SectionHeader eyebrow="FAQ" title="Common questions" />
+              </Reveal>
               <FaqList />
             </section>
 
             <section id={CONTACT_SECTION_ID} className={SECTION_CLASS_NAME}>
-              <div className="border border-rule bg-panel p-7 sm:p-10">
+              <Reveal className="border border-rule bg-panel p-7 sm:p-10">
                 <SectionHeader
                   tone="dark"
                   eyebrow="Contact"
@@ -98,7 +115,7 @@ export default function Page() {
                   lede="Send a short description of what you need and I will come back with a scope and a price."
                 />
                 <ContactSection />
-              </div>
+              </Reveal>
             </section>
 
             <SiteFooter />

@@ -1,5 +1,6 @@
 import type { ReactNode } from 'react';
 import { Layers, Gauge, ShieldCheck } from 'lucide-react';
+import Reveal from './reveal';
 
 const BENEFIT_ICON_SIZE_IN_PIXELS = 20;
 
@@ -41,8 +42,9 @@ export default function ProblemAndBenefits() {
         </p>
       </div>
       <ul data-testid="benefits-list" className="divide-y divide-rule border-y border-rule lg:col-span-3">
-        {BENEFITS.map((benefit) => (
-          <li key={benefit.title} className="flex gap-4 py-5">
+        {BENEFITS.map((benefit, index) => (
+          <li key={benefit.title}>
+            <Reveal staggerIndex={index} className="flex gap-4 py-5">
             <span aria-hidden="true" className="mt-0.5 flex h-9 w-9 shrink-0 items-center justify-center bg-accent-soft text-accent">
               {benefit.icon}
             </span>
@@ -50,6 +52,7 @@ export default function ProblemAndBenefits() {
               <h3 className="type-item-title">{benefit.title}</h3>
               <p className="type-body mt-1">{benefit.detail}</p>
             </div>
+            </Reveal>
           </li>
         ))}
       </ul>
