@@ -131,7 +131,7 @@ export default function SheetSidebar() {
                     </span>
                     <span
                       aria-hidden="true"
-                      className={`h-px transition-all ${isActive ? 'w-14 bg-accent' : 'w-7 bg-rule group-hover:w-14 group-hover:bg-ink'}`}
+                      className={`h-px transition-[width,background-color] duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] ${isActive ? "w-14 bg-accent" : "w-7 bg-rule group-hover:w-14 group-hover:bg-ink"}`}
                     />
                     <span className={`type-label text-[13px] transition-colors ${isActive ? 'text-accent' : 'group-hover:text-ink'}`}>
                       {navigationItem.label}

@@ -23,6 +23,17 @@ const DIAGRAM_HEIGHT = 152;
 const STAGE_TOP = 44;
 const STAGE_MIDDLE_Y = STAGE_TOP + STAGE_HEIGHT / 2;
 const CALLOUT_RADIUS = 11;
+// The schematic traces after the hero copy has settled; each stage waits on the one before it.
+const TRACE_START_DELAY_IN_SECONDS = 0.6;
+const TRACE_STEP_IN_SECONDS = 0.25;
+
+function stageDelay(stageIndex: number): string {
+  return `${TRACE_START_DELAY_IN_SECONDS + stageIndex * TRACE_STEP_IN_SECONDS}s`;
+}
+
+function wireDelay(wireIndex: number): string {
+  return `${TRACE_START_DELAY_IN_SECONDS + wireIndex * TRACE_STEP_IN_SECONDS + 0.17}s`;
+}
 
 function stageLeft(stageIndex: number): number {
   return DIAGRAM_PADDING + stageIndex * (STAGE_WIDTH + STAGE_GAP);
@@ -38,7 +49,7 @@ function PipelineSchematic() {
         const startX = stageLeft(stageIndex) + STAGE_WIDTH;
         const endX = stageLeft(stageIndex + 1);
         return (
-          <g key={stageIndex}>
+          <g key={stageIndex} className="pipeline-wire" style={{ animationDelay: wireDelay(stageIndex) }}>
             <line x1={startX} y1={STAGE_MIDDLE_Y} x2={endX} y2={STAGE_MIDDLE_Y} className="stroke-rule" strokeWidth="2" />
             <line
               x1={startX}
@@ -63,7 +74,7 @@ function PipelineSchematic() {
         const calloutX = left + STAGE_WIDTH - CALLOUT_RADIUS - 6;
         const calloutY = STAGE_TOP - CALLOUT_RADIUS - 6;
         return (
-          <g key={stage.label}>
+          <g key={stage.label} className="pipeline-stage" style={{ animationDelay: stageDelay(stageIndex) }}>
             <rect
               x={left}
               y={STAGE_TOP}

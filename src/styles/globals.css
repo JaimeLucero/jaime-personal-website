@@ -152,6 +152,60 @@ body {
       linear-gradient(to bottom, rgb(var(--color-rule) / 0.5) 1px, transparent 1px);
     background-size: 20px 20px;
   }
+
+  /*
+    Opening sequence. The hero sets itself line by line and the schematic traces
+    left to right, so the diagram explains its own order on arrival. Every rule
+    here is switched off by the reduced-motion block at the end of this file,
+    which leaves each element at its resting state.
+  */
+  .motion-rise {
+    animation: motion-rise 0.62s cubic-bezier(0.16, 1, 0.3, 1) both;
+  }
+
+  .motion-fade {
+    animation: motion-fade 0.5s ease-out both;
+  }
+}
+
+@keyframes motion-rise {
+  from {
+    opacity: 0;
+    transform: translateY(14px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+@keyframes motion-fade {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+/* Stages appear in order; the wire between them draws once the earlier stage has landed. */
+.pipeline-stage {
+  animation: motion-rise 0.5s cubic-bezier(0.2, 0.8, 0.2, 1) both;
+}
+
+.pipeline-wire {
+  animation: pipeline-wire-draw 0.3s ease-out both;
+}
+
+@keyframes pipeline-wire-draw {
+  from {
+    opacity: 0;
+    clip-path: inset(0 100% 0 0);
+  }
+  to {
+    opacity: 1;
+    clip-path: inset(0);
+  }
 }
 
 .pipeline-flow {
@@ -174,5 +228,15 @@ body {
   *::after {
     animation: none !important;
     transition: none !important;
+  }
+
+  /* Without the animation the fill mode never applies, so these rest fully visible. */
+  .motion-rise,
+  .motion-fade,
+  .pipeline-stage,
+  .pipeline-wire {
+    opacity: 1;
+    transform: none;
+    clip-path: none;
   }
 }
