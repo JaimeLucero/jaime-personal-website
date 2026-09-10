@@ -188,6 +188,37 @@ body {
   }
 }
 
+/*
+  Scroll reveals. A block is only armed after mount, and only when it is still
+  off screen, so nothing is ever parked invisible waiting on an observer.
+*/
+.reveal-armed:not(.reveal-in) {
+  opacity: 0;
+  transform: translateY(18px);
+}
+
+.reveal-in {
+  animation: motion-rise 0.62s cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+
+/* The timeline rail draws down as the entries beside it arrive. */
+.reveal-armed:not(.reveal-in) .timeline-rail {
+  transform: scaleY(0);
+}
+
+.reveal-in .timeline-rail {
+  animation: timeline-rail-draw 0.75s cubic-bezier(0.16, 1, 0.3, 1) 0.1s both;
+}
+
+@keyframes timeline-rail-draw {
+  from {
+    transform: scaleY(0);
+  }
+  to {
+    transform: scaleY(1);
+  }
+}
+
 /* Stages appear in order; the wire between them draws once the earlier stage has landed. */
 .pipeline-stage {
   animation: motion-rise 0.5s cubic-bezier(0.2, 0.8, 0.2, 1) both;
@@ -234,7 +265,10 @@ body {
   .motion-rise,
   .motion-fade,
   .pipeline-stage,
-  .pipeline-wire {
+  .pipeline-wire,
+  .reveal-armed,
+  .reveal-in,
+  .timeline-rail {
     opacity: 1;
     transform: none;
     clip-path: none;

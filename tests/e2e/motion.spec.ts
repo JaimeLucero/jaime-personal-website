@@ -49,3 +49,49 @@ test.describe('with reduced motion', () => {
     await expect(page.getByRole('heading', { level: 1 })).toBeVisible();
   });
 });
+
+const REVEALED_SECTION_SELECTORS = [
+  '[data-testid=benefits-list]',
+  '[data-testid=services-grid]',
+  '[data-testid=case-study-card]',
+  '[data-testid=more-work-grid]',
+  '[data-testid=experience-strip]',
+  '[data-testid=skills-grid]',
+  '[data-testid=faq-list]',
+  '[data-testid=contact-form]',
+];
+
+test('every revealed block is fully visible once scrolled to', async ({ page }) => {
+  await page.goto('/');
+
+  for (const selector of REVEALED_SECTION_SELECTORS) {
+    const block = page.locator(selector).first();
+    await block.scrollIntoViewIfNeeded();
+    await expect(block).toBeVisible();
+    await expect
+      .poll(async () =>
+        block.evaluate((element) => {
+          let node: HTMLElement | null = element as HTMLElement;
+          while (node) {
+            if (Number(getComputedStyle(node).opacity) < 1) return false;
+            node = node.parentElement;
+          }
+          return true;
+        })
+      )
+      .toBe(true);
+  }
+});
+
+test('nothing is left stranded invisible after a full scroll to the footer', async ({ page }) => {
+  await page.goto('/');
+  await page.evaluate(() => window.scrollTo({ top: document.body.scrollHeight, behavior: 'instant' }));
+
+  await expect
+    .poll(async () =>
+      page.evaluate(
+        () => [...document.querySelectorAll('.reveal-armed')].filter((element) => !element.classList.contains('reveal-in')).length
+      )
+    )
+    .toBe(0);
+});

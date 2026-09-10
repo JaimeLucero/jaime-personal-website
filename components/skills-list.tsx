@@ -1,4 +1,5 @@
 import Image from 'next/image';
+import Reveal from './reveal';
 
 const SKILL_ICON_SIZE_IN_PIXELS = 16;
 
@@ -57,8 +58,8 @@ const SKILL_GROUPS: SkillGroup[] = [
 export default function SkillsList() {
   return (
     <dl data-testid="skills-grid" className="grid gap-6 sm:grid-cols-2">
-      {SKILL_GROUPS.map((skillGroup) => (
-        <div key={skillGroup.name}>
+      {SKILL_GROUPS.map((skillGroup, index) => (
+        <Reveal key={skillGroup.name} staggerIndex={index}>
           <dt className="type-eyebrow">{skillGroup.name}</dt>
           <dd className="mt-2 flex flex-wrap gap-2">
             {skillGroup.skills.map((skill) => (
@@ -74,7 +75,7 @@ export default function SkillsList() {
               </span>
             ))}
           </dd>
-        </div>
+        </Reveal>
       ))}
     </dl>
   );

@@ -1,3 +1,4 @@
+import Reveal from './reveal';
 type ExperienceEntry = {
   period: string;
   organization: string;
@@ -41,9 +42,11 @@ const EXPERIENCE_ENTRIES: ExperienceEntry[] = [
 
 export default function ExperienceList() {
   return (
-    <ol data-testid="experience-strip" className="relative border-l-2 border-rule">
+    <ol data-testid="experience-strip" className="relative">
+      <span aria-hidden="true" className="timeline-rail absolute bottom-0 left-0 top-0 w-0.5 origin-top bg-rule" />
       {EXPERIENCE_ENTRIES.map((entry, index) => (
-        <li key={entry.organization} className="relative grid gap-2 py-6 pl-8 sm:grid-cols-5 sm:gap-8">
+        <li key={entry.organization} className="relative">
+          <Reveal staggerIndex={index} className="grid gap-2 py-6 pl-8 sm:grid-cols-5 sm:gap-8">
           <span
             aria-hidden="true"
             className={`absolute -left-[7px] top-8 h-3 w-3 border-2 border-paper ${index === 0 ? 'bg-accent ring-4 ring-accent-soft' : 'bg-rule'}`}
@@ -63,6 +66,7 @@ export default function ExperienceList() {
               ))}
             </ul>
           </div>
+          </Reveal>
         </li>
       ))}
     </ol>
