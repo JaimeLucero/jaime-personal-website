@@ -83,9 +83,20 @@ test('every revealed block is fully visible once scrolled to', async ({ page }) 
   }
 });
 
-test('nothing is left stranded invisible after a full scroll to the footer', async ({ page }) => {
+test('nothing is left stranded invisible after reading down the page', async ({ page }) => {
   await page.goto('/');
-  await page.evaluate(() => window.scrollTo({ top: document.body.scrollHeight, behavior: 'instant' }));
+
+  // Step down the page the way a reader scrolls. Jumping straight to the footer
+  // would skip past blocks without them ever entering the viewport, which is the
+  // one case a reveal is not expected to cover.
+  const stepCount = 24;
+  for (let step = 1; step <= stepCount; step += 1) {
+    await page.evaluate((fraction) => {
+      const travel = document.body.scrollHeight - window.innerHeight;
+      window.scrollTo({ top: travel * fraction, behavior: 'instant' });
+    }, step / stepCount);
+    await page.waitForTimeout(90);
+  }
 
   await expect
     .poll(async () =>
